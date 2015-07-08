@@ -1,0 +1,95 @@
+/*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+
+.yui-ac-content {
+	position:absolute;
+	border:1px solid #808080;
+	background:#fff;
+	overflow:hidden;
+	z-index:9050;
+	display:none;
+}
+
+.yui-ac-shadow {
+	position:absolute;
+	margin:.3em;
+	width:100%;
+	background:#000;
+	-moz-opacity:0.10;
+	opacity:.10;
+	filter:alpha(opacity=10);
+	z-index:9049;
+}
+
+.yui-ac-content ul {
+	text-align:right;
+	display:table-cell;/*le text-align n'est possible que sur un table-cell*/
+	margin:0;
+	padding:0;
+   	list-style-type:none;
+}
+
+.yui-ac-content li {
+	margin:0;
+	padding:2px 5px;
+	cursor:default;
+	white-space:nowrap;
+}
+.yui-ac-content .minWidthLi {
+	height:0px;
+	margin:0px;
+	padding:0px;
+	margin-bottom:0px !important; 
+	margin-bottom:-2px;/*IE only*/
+	line-height:0px;
+	font-size:0px;
+	width:300px;
+}
+
+.yui-ac-content li .highlight {
+	font-weight:bold;
+	color:#000;
+	background:yellow;
+}
+.yui-ac-content li.yui-ac-highlight .highlight {
+	/*color:#EE5;*/
+}
+
+.yui-ac-content li.yui-ac-prehighlight {
+	background:#D6D6D6;
+}
+
+.yui-ac-content li.yui-ac-highlight {
+	background:#B2B4BF;
+}
+
+.yui-ac-hd {
+	padding:1px 5px;
+	background:#FFD8D8;
+	width:290px; /*290 + 5+5(padding) = 300*/
+}
+
+.yui-ac-ft {
+	padding:0px 5px;
+	font-size:0.8em;
+	color:#888;
+}
+.yui-ac-content .ac_value {
+	float:left;
+	display:block;
+}
+
+.yui-ac-content .ac_info {
+	font-size: 0.8em;
+	padding-left:20px;
+	color:#666;
+}
+
+.yui-ac-content .ac_info .highlight {
+	color:#222;
+	background:yellow;
+}

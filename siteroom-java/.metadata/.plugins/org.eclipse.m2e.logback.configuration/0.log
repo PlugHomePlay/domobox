@@ -1,0 +1,20 @@
+2015-02-11 00:06:48,032 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/velocity/velocity/1.7/velocity-1.7.pom
+2015-02-11 00:06:48,150 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/velocity/velocity/1.7/velocity-1.7.pom
+2015-02-11 00:06:48,230 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.pom
+2015-02-11 00:06:48,324 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.pom
+2015-02-11 00:06:48,399 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/velocity/velocity/1.7/velocity-1.7.jar
+2015-02-11 00:06:48,844 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/velocity/velocity/1.7/velocity-1.7.jar
+2015-02-11 00:06:48,888 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar
+2015-02-11 00:06:49,396 [Worker-141] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar
+2015-02-11 00:08:14,403 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2015-02-11 00:08:38,892 [Worker-141] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Projets\domotique\siteroom-java\domobox
+2015-02-11 00:08:38,893 [Worker-141] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B eclipse:eclipse
+2015-02-15 21:34:28,095 [Worker-6] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/javax/comm/comm/3.0-u1/comm-3.0-u1.pom
+2015-02-15 21:34:28,405 [Worker-6] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/comm/comm/3.0-u1/comm-3.0-u1.pom
+2015-02-15 21:34:28,499 [Worker-6] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/comm/comm/3.0-u1/comm-3.0-u1.jar
+2015-02-15 21:34:36,926 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2015-02-15 21:34:37,117 [Worker-1] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Projets\domotique\siteroom-java\domobox
+2015-02-15 21:34:37,118 [Worker-1] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B eclipse:eclipse
+2015-02-15 21:40:57,373 [Worker-7] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/javax/comm/comm/2.0.3/comm-2.0.3.pom
+2015-02-15 21:40:57,549 [Worker-7] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/comm/comm/2.0.3/comm-2.0.3.pom
+2015-02-15 21:40:57,651 [Worker-7] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/comm/comm/2.0.3/comm-2.0.3.jar

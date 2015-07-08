@@ -1,0 +1,10 @@
+<dataConfig>
+	<dataSource driver="org.postgresql.Driver" url="jdbc:postgresql://192.168.1.29:5432/domobox" user="domobox" password="domobox" readOnly="true" autoCommit="false" transactionIsolation="TRANSACTION_READ_COMMITED" holdability="CLOSE_CURSORS_AT_COMMIT"/>
+	<document>
+		<entity name="domobox" query="select * from box">
+			<field column="b_uid" name="id" />
+			<field column="NAME" name="nom" />
+			<field column="DESCRIPTION" name="description" />
+		</entity>
+	</document>
+</dataConfig>

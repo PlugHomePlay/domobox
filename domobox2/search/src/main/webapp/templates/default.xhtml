@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:template="http://java.sun.com/jsf/composite/components/template"
+	xmlns:suivi="http://java.sun.com/jsf/composite/components/suiviFormation">
+	
+	<f:view contentType="text/html">
+		<h:head>
+			<f:facet name="first">
+				<meta http-equiv="X-UA-Compatible" content="IE=9" />
+			</f:facet>
+			<title>FORMACEN v#{footerBean.numeroVersion}</title>
+			<link rel="stylesheet" type="text/css" media="all" href="#{request.contextPath}/static/css/suiviFormation.css"/>
+			<link rel="stylesheet" type="text/css" media="all" href="#{request.contextPath}/static/js/jquery.qtip/jquery.qtip.css" />
+			<suivi:headLink/>
+			<script type="text/javascript" src="#{request.contextPath}/static/js/localeFr.js"></script>
+			<script type="text/javascript" src="#{request.contextPath}/static/js/jquery.qtip/jquery.qtip.js"></script>
+			<script type="text/javascript" src="#{request.contextPath}/static/js/infobulle.js"></script>
+			<link rel="icon" href="#{request.contextPath}/static/images/icone_FORMACEN.ico" type="image/x-icon"/>
+			<ui:insert name="head"></ui:insert>
+			<script type="text/javascript">
+				//Désactiver la toucher entrer
+				$(document).ready(function() {
+					$('body').keypress(function(event){
+						if (event.keyCode == 10 || event.keyCode == 13) 
+						{
+							console.log('a');
+							event.preventDefault();
+						}
+					});
+				});
+			</script>
+		</h:head>
+		<h:body>
+			<div id="site">
+				<ui:insert name="header">
+					header
+				</ui:insert>
+				<div id="pageContent">
+					<h:form id="form">
+						<div id="pageBlockTitle">
+							<div id="lienCreation"><ui:insert name="lienCreation"></ui:insert></div>
+							<div id="lienRetour"><ui:insert name="backLink"></ui:insert></div>
+							<div id="pageTitle">
+								<h1><ui:insert name="pageTitle">Titre de la page</ui:insert></h1>
+							</div>
+						</div>
+						<p:messages showDetail="true" id="messages" />
+						
+						<ui:insert name="content">
+ 							content
+ 						</ui:insert>
+						
+					</h:form>
+					<div id="footer">
+						<ui:insert name="footer">
+							<div style="clear:both">FORMACEN 2014 © Conseil supérieur du notariat - v#{footerBean.numeroVersion}</div>
+		    			</ui:insert>
+	    			</div>
+				</div>
+			</div>
+		</h:body>
+	</f:view>
+
+</html>

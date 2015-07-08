@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag selection</title>
+</head>
+<body>
+
+<composite:interface>	            	
+	<composite:attribute name="bean" required="true" />
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="mode" required="true" />        
+    <composite:valueHolder name="items" required="true" />            
+    <composite:attribute name="display" required="true" />
+	<composite:attribute name="nullLabel" required="true"/>
+	<composite:attribute name="update" />
+	<composite:attribute name="useListener" default="false" />
+	<composite:attribute name="listener" method-signature="void listener()"/>
+	<composite:attribute name="process"/>
+	<composite:attribute name="style"/>
+	<composite:attribute name="forceMandatory" default="false" />
+</composite:interface>
+
+<composite:implementation >  
+			<p:selectOneMenu id="editableSelectOnMenu"
+							 value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}" 
+							 rendered="#{!(cc.attrs.mode eq 'READ')}" 
+							 required="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required or cc.attrs.forceMandatory}"
+							 requiredMessage="#{msg.msgChampObligatoireMap[UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label]}"
+							 style="#{cc.attrs.style}">
+				<f:selectItem  itemLabel="#{cc.attrs.nullLabel}" itemValue="#{null}" />
+		   		<f:selectItems value="#{cc.attrs.items}" var="object" 
+		   			itemLabel="#{object[UIAdapterController.toAttributeName[cc.attrs.display]]}"   
+		    		itemValue="#{object[UIAdapterController.dtDefinitionUIAdapterMap[object].pkAttributeName]}"/>
+			    	<f:converter converterId="domainConverter"/>
+					<f:validator validatorId="domainValidator"/>						
+					<f:attribute name="dtField" 
+						value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>
+				<p:ajax event="change" process="#{cc.attrs.process}" update="#{cc.attrs.update}" disabled="#{cc.attrs.update eq null || cc.attrs.useListener}" />
+				<p:ajax event="change" process="#{cc.attrs.process}" listener="#{cc.attrs.listener}" disabled="#{!cc.attrs.useListener || cc.attrs.update ne null}" />
+				<p:ajax event="change" process="#{cc.attrs.process}" update="#{cc.attrs.update}" listener="#{cc.attrs.listener}" disabled="#{cc.attrs.update eq null || !cc.attrs.useListener}" />
+	   		</p:selectOneMenu>
+	   		<p:message for="editableSelectOnMenu" display="icon" rendered="#{!(cc.attrs.readonly)}"/>
+	   	
+   			<h:outputText value="#{UIAdapterController.listUIAdapterMap[cc.attrs.items].indexMap[cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]][UIAdapterController.toAttributeName[cc.attrs.display]]}"
+					rendered="#{cc.attrs.mode eq 'READ' and cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]] ne null }">			
+				<f:converter converterId="domainConverter"/>
+				<f:attribute name="dtField"
+					value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.items].fieldMap[cc.attrs.display].dtField}" /> 
+	    	</h:outputText> 
+</composite:implementation>
+
+</body>
+</html> 

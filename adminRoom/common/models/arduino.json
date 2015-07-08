@@ -1,0 +1,28 @@
+{
+  "name": "arduino",
+  "plural": "arduino",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "index": true,
+      "comments": "Nom de la carte (Uno, Mega, Leonardo, ..)"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": []
+}

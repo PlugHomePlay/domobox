@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag size output</title>
+</head>
+<body>
+
+<composite:interface>	
+	<composite:attribute name="bean" />	
+    <composite:attribute name="property" />
+    <composite:attribute name="styleClass" />
+    <composite:attribute name="style" />
+    <composite:attribute name="formatterId" />
+</composite:interface>
+
+<composite:implementation>
+	v2(<h:outputText styleClass="#{cc.attrs.styleClass}" style="#{cc.attrs.style}" 
+		value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}">			
+		<f:converter converterId="domainConverter"/>
+		<f:attribute name="formatterId" value="#{cc.attrs.formatterId}"/>
+		<f:attribute name="dtField" 
+			value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>
+	</h:outputText>	)	
+					
+</composite:implementation>
+
+</body>
+</html> 

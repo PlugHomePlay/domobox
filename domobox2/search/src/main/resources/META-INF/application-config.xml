@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE application-config PUBLIC "-//Kasper//DTD Kasper Application Config 1.0//EN"
+                              "http://www.kleegroup.com/dtd/kasper-application-config_1_0.dtd"> 
+
+<application-config>
+  	<config name="admin.versioning">
+  		<property name="versionNumber" value="1.2.8"/>    	
+  	</config>
+  	<config name="admin.user">
+  		<property name="nbRowPage" value="20"/>    	
+  	</config>
+  	<config name="admin.search">
+  		<property name="defaultMaxRows" value="500"/>
+  		<property name="synthesePlanMaxRows" value="600"/>
+  		<property name="intituleMaxRows" value="10000"/>
+  	</config>
+	<config name="admin.publishing">
+		<property name="modelDirectory" value="odt" />
+	</config>
+  	<config name="admin.upload">
+  		<property name="sizeLimit" value="50242880"/>
+  		<property name="mimeTypes" value="/\./"/>
+  	</config>
+  	<config name="ficen.ws">
+  		<property name="wsdl" value="META-INF/wsdl/ficen/radar.wsdl"/>
+  		<property name="namespace" value="http://ficen.csn.fr/wsdl/radar"/>
+  		<property name="serviceName" value="radarService"/>
+  		<property name="portName" value="radarPort"/>
+  	</config>
+  	<config name="ficenFormacen.ws">
+  	    <property name="wsdl" value="META-INF/wsdl/ficen/formacen.wsdl"/>
+  	    <property name="namespace" value="http://ficen.csn.fr/wsdl/formacen"/>
+  	    <property name="serviceName" value="formacenService"/>
+  	    <property name="portName" value="formacenPort"/>
+  	</config>
+</application-config>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:k="http://java.sun.com/jsf/composite/components/kasper"
+	xmlns:suivi="http://java.sun.com/jsf/composite/components/suiviFormation"
+	template="/templates/templatePageContenu.xhtml">
+	
+	
+	<ui:define name="pageContent">
+		<ui:fragment rendered="#{templateRechercheListInfoVCtrl.displayCritere}">
+			<div id="critere">
+				<h4>Filtre</h4>
+				<div class="box">
+					<ui:insert name="filtre">
+						critère de sélection
+					</ui:insert>
+					<div class="content-button">
+						<ui:insert name="filtrer">
+							action de recherche
+						</ui:insert>
+					</div>
+				</div>
+			</div>
+		</ui:fragment>
+		<ui:fragment rendered="#{templateRechercheListInfoVCtrl.searchDone}">
+			<div id="tableau" style="margin-top: 30px;">		
+				<h:outputLabel value="Aucun élément trouvé" rendered="#{templateRechercheListInfoVCtrl.size eq 0}"/>
+				<ui:fragment rendered="#{templateRechercheListInfoVCtrl.size ne 0}">
+					<div class="titre">
+						<ui:fragment rendered="#{templateRechercheListInfoVCtrl.displayCritere}">
+							<h4>Liste filtrée</h4>
+						</ui:fragment>
+						<div>
+							<div style="display:inline-block;width:1140px">#{templateRechercheListInfoVCtrl.messageElements}</div>
+							<div id="SearchExport" style="display:inline-block;">
+								<ui:insert name="exporter">
+									lien d'export
+								</ui:insert>
+							</div>
+						</div>
+					</div>
+					<ui:insert name="résultat">
+						résultat de la recherche
+					</ui:insert>
+				</ui:fragment>
+			</div>
+		</ui:fragment>
+		<ui:insert name="complément"/>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ====================================================================== -->
+<!-- Ant build file (http://ant.apache.org/) for Ant 1.6.2 or above.        -->
+<!-- ====================================================================== -->
+
+<project name="Infini_Domobox" basedir=".">
+
+	<property name="maven.build.srcDir.0" value="src/main/java" />
+	<property name="maven.build.srcDir.1" value="src/main/javagen" />
+	
+	<target name="jenkins_ext_dependencies" description="Installation des dépendances externes pour jenkins">
+			<exec executable="mvn" dir=".">
+				<arg line="-X" />
+				<arg line="-Dmaven.settings.offline=false" />
+				<arg line="-Dfile=src/main/lib-ext-dependencies/inwebo.2.1.jar" />
+				<arg line="-DgroupId=com.inwebo" />
+				<arg line="-DartifactId=inwebo" />
+				<arg line="-Dversion=2.1" />
+				<arg line="-Dpackaging=jar" />
+				<arg line="install:install-file" />
+			</exec>
+			<exec executable="mvn" dir=".">
+				<arg line="-X" />
+				<arg line="-Dmaven.settings.offline=false" />
+				<arg line="install:install-file" />
+			</exec>
+		</target>
+	
+	<target name="install ext dependencies" description="Installation des dépendances externes dans le repository projet local">
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+			<arg line="-X" />
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="-Dmaven.settings.offline=false" />
+			<arg line="-Dfile=src/main/lib-ext-dependencies/inwebo.2.1.jar" />
+			<arg line="-DgroupId=com.inwebo" />
+			<arg line="-DartifactId=inwebo" />
+			<arg line="-Dversion=2.1" />
+			<arg line="-Dpackaging=jar" />
+			<arg line="install:install-file" />
+		</exec>
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+			<arg line="-X" />
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="-Dmaven.settings.offline=false" />
+			<arg line="install:install-file" />
+		</exec>
+	</target>
+
+
+	<target name="war" description="construction du war">
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+			<arg line="-X" />
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="-Dmaven.settings.offline=false" />
+			<arg line="-PStartApplication" />
+			<arg line="clean package" />
+		</exec>
+	</target>
+
+	<target name="view-dependencies" description="Construit l'arbre des dépendances.">
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="dependency:tree" />
+		</exec>
+	</target>
+
+	<target name="compile" description="Compile les sources du projet">
+		<!--
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+		-->
+		<exec executable="mvn.bat" dir=".">
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="clean compile" />
+		</exec>
+	</target>
+
+
+	<target name="compile-and-start-application" description="Compile l'application et vérifie qu'elle démarre">
+		<!-- Compile et exécute un test vide pour vérifier le démarrage de l'application. -->
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="-Dmaven.settings.offline=true" />
+			<!-- Active les tests et utilise le profile spécifique. -->
+			<arg line="-Dmaven.test.skip=false" />
+			<arg line="-PStartApplication" />
+			<arg line="clean test" />
+		</exec>
+	</target>
+
+	<target name="cruisecontrol-tnr" description="Lancement des TNR pour cruisecontrol">
+		<delete dir="${maven.build.dir}" />
+		<!--
+		<exec executable="../Maven/apache-maven-3.0.4/bin/mvn.bat" dir=".">
+		-->
+		<exec executable="mvn.bat" dir=".">
+			<!-- Utilise le repo projet -->
+			<arg line="-s settings.xml" />
+			<arg line="-Dmaven.settings.offline=true" />
+			<!-- Active les tests et utilise le profile spécifique. -->
+			<arg line="-Dmaven.test.skip=false" />
+			<arg line="-PCruiseControl" />
+			<arg line="test" />
+		</exec>
+	</target>
+
+
+
+</project>

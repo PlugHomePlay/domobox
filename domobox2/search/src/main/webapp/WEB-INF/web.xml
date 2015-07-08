@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>KASPERJSF</display-name>
+	<listener>
+		<listener-class>fr.csn.suiviFormation.boot.ApplicationServletContextListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>com.sun.faces.injectionProvider</param-name>
+		<param-value>kasperimpl.jsf.component.ComponentInjectionProvider</param-value>
+	</context-param>
+	<context-param>
+		<param-name>db.source</param-name>
+		<param-value>java:/comp/env/jdbc/DataSource</param-value>
+	</context-param>
+	<context-param>
+		<param-name>db.classname</param-name>
+		<param-value>kasperimpl.database.ext.postgresql.PostgreSqlDataBase</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dtDefinitionsClassName</param-name>
+		<param-value>fr.csn.suiviFormation.domain.DtDefinitions</param-value>
+	</context-param>
+	<context-param>
+		<param-name>configExterne</param-name>
+		<param-value>/META-INF/application-config-env.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>applicationConfiguration</param-name>
+		<param-value>/META-INF/managers.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>componentConfiguration</param-name>
+		<param-value>/META-INF/components-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>job.enable</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbfs.filePath</param-name>
+		<param-value>C:/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>openOffice.host</param-name>
+		<param-value>ficenweb.part.klee.lan.net</param-value>
+	</context-param>
+	<context-param>
+		<param-name>openOffice.port</param-name>
+		<param-value>8200</param-value>
+	</context-param>
+	<context-param>
+		<param-name>openOffice.startCmd</param-name>
+		<param-value></param-value>
+	</context-param>
+	<context-param>
+		<param-name>openOffice.killCmd</param-name>
+		<param-value></param-value>
+	</context-param>
+	<context-param>
+		<param-name>openOffice.cardSize</param-name>
+		<param-value>500</param-value>
+	</context-param>
+	<context-param>
+		<param-name>nodeId1</param-name>
+		<param-value>node1-1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>webappUrl1</param-name>
+		<param-value>[A surcharger pour un serveur de traitement distant: [URL de la premiere application web prise en charge]/rest]</param-value>
+	</context-param>
+	<context-param>
+		<param-name>nodeId2</param-name>
+		<param-value>node1-2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>webappUrl2</param-name>
+		<param-value>[A surcharger pour un serveur de traitement distant: [URL de la seconde application web prise en charge]/rest]</param-value>
+	</context-param>
+	<context-param>
+		<param-name>default.charset</param-name>
+		<param-value>iso-8859-1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>
+					/WEB-INF/faces-config.xml
+		</param-value>
+	</context-param>
+	<!--
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	-->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>aristo</param-value>
+	</context-param>
+	<context-param>
+    	<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    	<param-value>true</param-value>
+	</context-param>
+	<!-- Pour la prod 
+	<context-param>
+		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-value>-1</param-value>
+	</context-param>
+	-->
+	<filter>
+		<filter-name>Security Filter</filter-name>
+		<filter-class>kasperimpl.jsf.servlet.SecurityFilter</filter-class>
+		<init-param>
+			<param-name>url-exclude-pattern</param-name>
+			<param-value>/pages/application*Error.jsf;/javax\.faces\.resource/*;/static/*;/resources/*;/pages/knock/*;/pages/dashboard/*;/pages/tutorial/*;/pages/accueil/login\.jsf;/pages/accueil/cgu\.jsf</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Security Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter>
+		<filter-name>Debug Filter</filter-name>
+		<filter-class>fr.csn.suiviFormation.filter.DebugFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Debug Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter>
+		<filter-name>Analytics Filter</filter-name>
+		<filter-class>com.kleegroup.analyticaimpl.spies.httprequest.HttpRequestSpyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Analytics Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<description>Maximum file size in bytes to keep uploaded files in memory. If 
+        	a file exceeds this limit, it'll be temporarily written to disk</description>
+			<param-name>thresholdSize</param-name>
+			<param-value>51200</param-value> <!-- 50kb -->
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter>
+	  <filter-name>FiltreUTF8</filter-name>
+	  <filter-class>fr.csn.suiviFormation.filter.FiltreUTF8</filter-class>
+	 </filter>
+	 
+	 <filter-mapping>
+	  <filter-name>FiltreUTF8</filter-name>
+	  <url-pattern>/*</url-pattern>
+	 </filter-mapping>
+	 
+	 
+	<filter>
+		<filter-name>client-no-cache</filter-name>
+		<filter-class>kasperx.ui.filter.CacheControlFilter</filter-class>
+		<init-param>
+			<param-name>Cache-Control</param-name>
+			<param-value>no-cache</param-value>
+		</init-param>
+		<init-param>
+			<param-name>Pragma</param-name>
+			<param-value>no-cache</param-value>
+		</init-param>
+		<init-param>
+			<param-name>Expires</param-name>
+			<param-value>-1</param-value>
+		</init-param>
+        <init-param>
+        	<param-name>url-exclude-pattern</param-name>
+        	<param-value>/javax\.faces\.resource/.*;/static/.*;/resources/.*</param-value>
+        </init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>client-no-cache</filter-name>
+       <servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+  	 
+	 
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+	  <servlet-name>Jersey REST Service</servlet-name>
+	  <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+	  <init-param>
+	    <param-name>com.sun.jersey.config.property.packages</param-name>
+	    <param-value> kasperx.work.plugins.rest</param-value>
+	  </init-param>
+	  <init-param>
+         <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+         <param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
+     </init-param>
+     <init-param>
+         <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+         <param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
+     </init-param>
+    </servlet>	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	  <servlet-name>Jersey REST Service</servlet-name>
+	  <url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	<mime-mapping>
+		<extension>html</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>txt</extension>
+		<mime-type>text/plain</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>css</extension>
+		<mime-type>text/css</mime-type>
+	</mime-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/pages/viewExpired.jsf</location>
+	</error-page>
+	<error-page>
+		<exception-type>fr.csn.suiviFormation.jsfui.exception.AccesRecetteSecurityException</exception-type>
+		<location>/pages/applicationAccesRecetteSecurityError.jsf</location>
+	</error-page>
+	<error-page>
+		<exception-type>fr.csn.suiviFormation.jsfui.exception.ChangeCleRealSecurityException</exception-type>
+		<location>/pages/applicationChangeCleRealSecurityError.jsf</location>
+	</error-page>
+	<error-page>
+		<exception-type>fr.csn.suiviFormation.jsfui.exception.NoClefRealSecurityException</exception-type>
+		<location>/pages/applicationNoCleRealSecurityError.jsf</location>
+	</error-page>
+	<error-page>
+		<exception-type>fr.csn.suiviFormation.security.SecurityException</exception-type>
+		<location>/pages/applicationSecurityError.jsf</location>
+	</error-page>
+	<error-page>
+		<exception-type>fr.csn.suiviFormation.jsfui.exception.UnauthorizedCleRealSecurityException</exception-type>
+		<location>/pages/applicationUnauthorizedCleSecurityError.jsf</location>
+	</error-page>
+	<error-page>
+		<!-- S'il manque les CGU on redirige vers la page d'acceptation. -->
+		<exception-type>fr.csn.suiviFormation.jsfui.exception.CguNotAcceptedException</exception-type>
+		<location>/pages/accueil/cgu.jsf</location>
+	</error-page>
+	<resource-ref>
+		<description>
+			Resource reference to a factory for java.sql.Connection
+			instances that may be used for talking to a particular
+			database that is configured in the server.xml file.
+		</description>
+		<res-ref-name>jdbc/DataSource</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+</web-app>

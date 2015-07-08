@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:k="http://java.sun.com/jsf/composite/components/kasper"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag text</title>
+</head>
+<body>
+
+<composite:interface>	
+    <composite:attribute name="bean" required="true"/>
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="cols" default="50" />
+    <composite:attribute name="rows" default="5" />
+    <composite:attribute name="forceMandatory" default="false"/>
+    <composite:attribute name="style" />
+    <composite:attribute name="styleClass" />
+    <composite:attribute name="readonly" default="true"/>
+</composite:interface>
+
+
+<composite:implementation >
+	<span class="field">
+		<h:inputTextarea id="#{cc.attrs.property}" 
+					 rendered="#{!cc.attrs.readonly}"
+					style="#{cc.attrs.style}" styleClass="#{cc.attrs.styleClass}" 
+					value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}" 				 
+					required="#{cc.attrs.forceMandatory || UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required}"
+					requiredMessage="#{msg.msgChampObligatoireMap[UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label]}"
+					disabled="#{cc.attrs.readonly}"
+					cols="#{cc.attrs.cols}"
+					rows="#{cc.attrs.rows}"
+					onkeypress="(function(event){event.stopPropagation()})(event);">
+				<f:validator validatorId="domainValidator"/>
+			    <f:converter converterId="domainConverter"/>
+			    <f:attribute name="dtField" value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>
+		</h:inputTextarea>
+		<ui:fragment rendered="#{cc.attrs.readonly}">
+			<k:text styleClass="multy-line" readonly="true" property="#{cc.attrs.property}" bean="#{cc.attrs.bean}"/>
+		</ui:fragment>
+		<p:message for="#{cc.attrs.property}" display="icon" rendered="#{!cc.attrs.readonly}"/>	
+	</span>		
+</composite:implementation>
+
+</body>
+</html> 

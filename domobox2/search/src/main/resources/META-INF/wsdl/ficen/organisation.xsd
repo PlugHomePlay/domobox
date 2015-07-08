@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://ficen.csn.fr/wsdl/organisation/types" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ficen.csn.fr/wsdl/organisation/types" xmlns:Q1="http://ficen.csn.fr/wsdl/transverse/types">
+    <import schemaLocation="transverse.xsd" namespace="http://ficen.csn.fr/wsdl/transverse/types"></import>
+    <complexType name="instanceInfo">
+		<sequence>
+			<element name="codeCrpcen" maxOccurs="1" minOccurs="1" type="Q1:codeCrpCen">
+				<annotation>
+					<documentation>Code CRPCEN de l'instance</documentation>
+				</annotation>
+			</element>
+			<element name="codeCsn" maxOccurs="1" minOccurs="1" type="Q1:codeCsn">
+				<annotation>
+					<documentation>Code CSN de l'instance. Identifiant externe de l'instance</documentation>
+				</annotation>
+			</element>
+			<element name="codeCsnParent" type="Q1:codeCsn" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Code csn de l'instance parente</documentation>
+				</annotation>
+			</element>
+			<element name="type" maxOccurs="1" minOccurs="1" type="tns:typeInstance">
+				<annotation>
+					<documentation>Type de l'instance</documentation>
+				</annotation>
+			</element>
+			<element name="nom" type="Q1:libelle150" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Nom de l'instance</documentation>
+				</annotation>
+			</element>
+			<element name="libelle" type="Q1:libelle150" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Libellé de l'instance dans les exports de fichiers</documentation>
+				</annotation>
+			</element>
+			<element name="sigle" type="Q1:libelle150" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Sigle/ nom abbrégé de l'instance</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="utilisateurInfo">
+		<sequence>
+			<element name="cleReal" type="Q1:cleReal" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Clef Real. Identifiant externe de l'utilisateur</documentation>
+				</annotation>
+			</element>
+			<element name="nom" type="Q1:nom" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Nom de l'utilisateur</documentation>
+				</annotation>
+			</element>
+			<element name="prenom" type="Q1:prenom" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Prénom de l'utilisateur</documentation>
+				</annotation>
+			</element>
+			<element name="telephone" type="Q1:telephone" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Téléphone de l'utilisateur</documentation>
+				</annotation>
+			</element>
+			<element name="courriel" type="Q1:courriel" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Courriel de l'utilisateur</documentation>
+				</annotation>
+			</element>
+			<element name="typeRattachement" maxOccurs="1" minOccurs="1" type="tns:typeRattachementUtilisateur">
+				<annotation>
+					<documentation>Type de rattachement de l'utilisateur: DEP : chambre départementale. REG :conseil régional. SUP : conseil supérieur.</documentation>
+				</annotation>
+
+			</element>
+
+			<element name="codeInstance" type="Q1:codeCsn" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Code CSN de l'instance de rattachement de l'utilisateur</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="typeRattachementUtilisateur">
+		<annotation>
+			<documentation>
+				Type de rattachement de l'utilisateur: DEP : chambre
+				départementale. REG :conseil régional. SUP : conseil
+				supérieur. OFF: office
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="DEP"></enumeration>
+			<enumeration value="REG"></enumeration>
+			<enumeration value="SUP"></enumeration>
+			<enumeration value="OFF"></enumeration>
+		</restriction>
+
+	</simpleType>
+
+	<simpleType name="typeInstance">
+		<annotation>
+			<documentation>
+				Type de l'instance: CDN : chambre départementale. CIN : chambre interdépartementale. Ce sont des chambres départementales qui fonctionnent comme des conseils régionaux. CRN
+				:conseil régional. CSN : conseil supérieur.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="CDN"></enumeration>
+			<enumeration value="CIN"></enumeration>
+			<enumeration value="CRN"></enumeration>
+			<enumeration value="CSN"></enumeration>
+		</restriction>
+	</simpleType>
+</schema>

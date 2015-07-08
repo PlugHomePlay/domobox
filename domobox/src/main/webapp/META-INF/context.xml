@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context  path="/domobox" debug="0" reloadable="true" allowCasualMultipartParsing="true">
+	
+	<Resource name="jdbc/DataSource" 
+		auth="SERVLET" 
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://192.168.1.23:5432/domobox"
+		username="domobox"
+		password="domobox" 
+		maxActive="5"
+		maxIdle="0" 
+		maxWait="10000"
+		removeAbandoned="true" 
+		logAbandoned="true" />	
+		
+	<Loader loaderClass="org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader" />
+	
+</Context>

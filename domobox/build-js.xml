@@ -1,0 +1,29 @@
+<project name="domobox-js">
+	<!-- Installe les dépendances SPA -->
+	<property name="spa.dir" location="./src/main/spa" />
+		<target name="spa-install" description="Installe les dépendances du projets">
+			<echo message="Installation des dépendances nécessaire au fonctionnement de la  SPA" />
+			<exec executable="${spa.dir}/install.bat" dir="${spa.dir}">
+			</exec>
+	</target>
+	<!-- Build le dossier SPA -->
+	<target name="spa-compile" description="Compile les sources du projet spa">
+		<echo message="Build des sources SPA dans le dossier static de tomcat" />
+		<exec executable="${spa.dir}/build.bat" dir="${spa.dir}">
+		</exec>
+	</target>
+	<target name="spa-compile-prod" description="Compile les sources du projet spa pour la production">
+				<echo message="Watch des sources SPA dans le dossier static de tomcat" />
+				<exec executable="${spa.dir}/production.bat" dir="${spa.dir}">
+					<arg line="w" />
+				</exec>
+	  	</target>
+	<!-- Watch le dossier SPA -->
+	<target name="spa-watch" description="Compile les sources du projet spa">
+			<echo message="Watch des sources SPA dans le dossier static de tomcat" />
+			<exec executable="${spa.dir}/watch.bat" dir="${spa.dir}">
+				<arg line="w" />
+			</exec>
+  	</target>
+	
+</project>

@@ -1,0 +1,30 @@
+1) Clic droit sur le PDM -> Detach from workspace
+
+2) Model -> target models -> Supprimer le target model existant
+
+3) a) Tools -> generate Pysical Data Model (choisir le DBMS de notre base : sql serveur 2008'); 
+dans Model Options -> Columns and domain, cocher dans le menue 'enforce non divergence') la case dataType
+
+   b) Enregistrer le pdm en écrasant la version précédente.
+
+4) Double cliquer sur un diagramme objet
+
+5) a) Tools -> execute command -> run script 
+		 -> Ouvrir synchro_oom_pdm.vbs -> Run
+   b) Enregistrer PDM et OOM
+
+6) Double cliquer sur un diagramme physique
+
+7) Database -> generate database
+	a) selectionner la configuration  generation_creation_bdd.set et appliquer
+	b) dans l'onglet sélection cocher "include sub objects" puis "sélectionner tout"(dans l'onglet table et dans l'onglet sequence). 
+	c) cliquer sur "OK"
+
+8) Avant de commiter le crebas.sql généré, utiliser la vue des différences CVS
+pour mettre à jour la base
+	a) en partant du bas, générer les drops et alter drop (éléments du panneau de droite non présents dans le panneau de gauche)
+	b) en partant du haut, générer les create et alter add (éléments du panneau de gauche non présents dans le panneau de droite)
+
+9) Lancer le build.xml
+
+10) Commiter le modèle, le crebas.sql et les classes générées.

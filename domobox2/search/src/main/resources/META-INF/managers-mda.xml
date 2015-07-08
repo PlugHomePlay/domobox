@@ -1,0 +1,43 @@
+<?xml version =	'1.0' encoding = 'ISO-8859-1'?>
+<modules>
+	<module name="kasper-kernel">
+		<manager name="ResourceManager" class="kasperimpl.resource.ResourceManagerImpl">
+			<plugin id="classpath" name="ResourcePlugin" class="kasperimpl.resource.plugins.java.ClassPathResourceResolverPlugin" />
+			<plugin id="url" name="ResourcePlugin" class="kasperimpl.resource.plugins.url.URLResourceResolverPlugin" />
+		</manager>
+	</module>
+
+	<module name="kasper-commons">
+		<manager name="EnvironmentManager" class="kasperimpl.environment.EnvironmentManagerImpl">
+			<plugin id="OOMPlugin" name="LoaderPlugin" class="kasperimpl.environment.plugins.loaders.poweramc.OOMLoaderPlugin" >
+            	<param name ="oom" value="file:src/main/bdd/modele/domobox/domobox.oom"/>
+        	</plugin>    
+        	<plugin id="KPRPlugin" name="LoaderPlugin" class="kasperimpl.environment.plugins.loaders.kpr.KprLoaderPlugin" >
+            	<param name ="kpr" value="file:src/main/resources/fr/infini/domobox/generation.kpr"/>
+        	</plugin>
+        	<plugin id="DomainPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.domain.DomainDynamicRegistryPlugin" />
+            <plugin id="TaskPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.task.TaskDynamicRegistryPlugin" />
+            <plugin id="PersistencePlugin" name ="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.persistence.PersistenceDynamicRegistryPlugin" />
+      		<plugin id="PublisherPlugin" name ="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.publisher.PublisherDynamicRegistryPlugin" />
+      		<plugin id="SearchPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.search.SearchDynamicRegistryPlugin" />
+            <plugin id="FilePlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.file.FileDynamicRegistryPlugin" />
+		</manager>
+	</module>
+	
+	<module name="kasper-mda">
+		<manager name="MdaManager" class="kasperimpl.mda.MdaManagerImpl">
+        	<plugin id="DomainGeneratorPlugin" name="GeneratorPlugin" class="kasperimpl.mda.plugins.domain.DomainGeneratorPlugin">
+        	    <param name="generateDtResources" value="true" />
+        	    <param name="generateDtDefinitions" value="true" />
+        	    <param name="generateDtObject" value="true" />
+        	    <param name="generateSql" value="false" />
+        	</plugin>
+        	<plugin id="TaskGeneratorPlugin" name="GeneratorPlugin" class="kasperimpl.mda.plugins.task.TaskGeneratorPlugin"/>
+        	<!-- 
+        	<plugin id="SearchGeneratorPlugin" name="GeneratorPlugin" class="kasperimpl.mda.plugins.search.SearchGeneratorPlugin"/>
+        	<plugin id="SecurityGeneratorPlugin" name="GeneratorPlugin" class="kasperimpl.mda.plugins.security.SecurityGeneratorPlugin"/>
+        	 -->
+        	<plugin id="FileInfoGeneratorPlugin" name="GeneratorPlugin" class="kasperimpl.mda.plugins.file.FileInfoGeneratorPlugin"/>
+        </manager>
+    </module>
+</modules>

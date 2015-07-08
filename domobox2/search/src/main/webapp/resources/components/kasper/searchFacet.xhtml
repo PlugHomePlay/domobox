@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag search facet</title>
+</head>
+<body>
+
+<composite:interface>
+	<composite:attribute name="controller" required="true" />
+	<composite:attribute name="fullAjax" default="false" shortDescription="Indique si toutes les actions doivent être gérées en ajax." />
+	<composite:attribute name="popinPanelId" shortDescription="Pour les popins, ID du panel contenant le formulaire de recherche" />
+</composite:interface>
+
+<composite:implementation >	
+	<ui:fragment rendered="#{cc.attrs.controller.siFacetteVisible}">		
+		<p:fieldset legend="Filtrer les résultats">
+			<ui:repeat value="#{cc.attrs.controller.allFacets}" var="facet">
+				<p:panel id="facetItem">				
+					<ui:fragment rendered="#{!facet.selected and facet.differential}">
+						<div class="titre-facette">
+							<button class="collapsable" value="Masquer" />
+							<h:outputText value="#{facet.label}"/>
+						</div>
+						<ui:fragment rendered="#{facet.allFacetValues.size() &gt; cc.attrs.controller.maxValuesPerFacet}">
+							Inactivé (trop d'éléments)
+						</ui:fragment>
+						<ui:fragment rendered="#{facet.allFacetValues.size() &lt;= cc.attrs.controller.maxValuesPerFacet}">			
+						<div class="contenu-facette">
+							<ui:repeat value="#{facet.facetValues}" var="facetValue">							
+								<div class="valeur-facette">
+									<p:commandLink action="#{cc.attrs.controller.addFacet}" 
+										ajax="#{cc.attrs.fullAjax eq 'true' ? 'true' : 'false' }" 
+										update="#{cc.attrs.fullAjax eq 'true' ? cc.attrs.popinPanelId : ''}"
+										immediate="true">
+										<f:param name="facetName" value="#{facet.name}"/>
+										<f:param name="facetValueKey" value="#{facetValue.key}"/>
+										<h:outputText value="#{facetValue.label}"/>
+										(<h:outputText value="#{facetValue.nbDoc}"/>)
+									</p:commandLink>
+								</div>
+							</ui:repeat>
+							<p:outputPanel rendered="#{facet.expandable}" styleClass="moreFacet">							
+								<p:commandLink actionListener="#{cc.attrs.controller.expandFacet}"  
+								ajax="true" update="facetItem" immediate="true" 
+								value="Afficher tout" oncomplete="computedFacetCollapse()">
+									<f:param name="facetName" value="#{facet.name}"/>
+								</p:commandLink>
+							</p:outputPanel>
+							<p:outputPanel rendered="#{facet.shrinkable}" styleClass="lessFacet">							
+								<p:commandLink actionListener="#{cc.attrs.controller.shrinkFacet}" 
+								ajax="true" update="facetItem" immediate="true"
+								value="Replier tout" oncomplete="computedFacetCollapse()">
+									<f:param name="facetName" value="#{facet.name}"/>
+								</p:commandLink>
+							</p:outputPanel>
+						</div>
+						</ui:fragment>					
+					</ui:fragment>
+					<ui:fragment rendered="#{facet.selected}">
+						<div class="titre-facette">
+							<div class="cancel">					
+								<p:commandLink action="#{cc.attrs.controller.removeFacet}" immediate="true" 
+									ajax="#{cc.attrs.fullAjax eq 'true' ? 'true' : 'false' }"
+									update="#{cc.attrs.fullAjax eq 'true' ? cc.attrs.popinPanelId : ''}" >
+									<h:outputText styleClass="ui-icon ui-icon-close" />							
+									<f:param name="facetName" value="#{facet.name}"/>						
+								</p:commandLink>
+							</div>
+							<div class="selection"><h:outputText value="#{facet.label}"/>&#160;:&#160;
+								<ui:repeat value="#{facet.facetValues}" var="facetValue">
+									<h:outputText value="#{facetValue.label}"/>							
+								</ui:repeat>
+							</div>
+						</div>		
+					</ui:fragment>
+				</p:panel>					
+			</ui:repeat>	
+		</p:fieldset>
+	</ui:fragment>
+</composite:implementation>
+</body>
+</html> 

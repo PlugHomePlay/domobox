@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag calendar</title>
+</head>
+<body>
+
+<composite:interface>	
+	<composite:attribute name="bean" required="true" />
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="mode" required="true" />
+    <composite:attribute name="readonly" default="false" />
+    <composite:attribute name="pattern" default="dd/MM/yyyy" />
+    <composite:attribute name="navigator" default="true" />
+    <composite:attribute name="required" default="false" />
+</composite:interface>
+
+<composite:implementation >
+	<span class="field">
+		<p:calendar id="calendarField" 			
+			value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}"
+			navigator="#{cc.attrs.navigator}" 
+			locale="fr"
+			pattern="#{cc.attrs.pattern}"
+			required="#{(cc.attrs.required) or (UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required)}"
+			requiredMessage="#{msg.msgChampObligatoireMap[UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label]}"
+			rendered="#{(!(cc.attrs.mode eq 'READ')) and (!cc.attrs.readonly)}">
+			<f:converter converterId="domainConverter"/>
+			<f:validator validatorId="domainValidator"/>			
+			<f:attribute name="dtField" 
+				value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>						
+		</p:calendar>
+		<h:outputText value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}"
+					rendered="#{(cc.attrs.mode eq 'READ') || cc.attrs.readonly}">			
+			<f:converter converterId="domainConverter"/>
+			<f:attribute name="dtField" 
+				value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/> 
+		</h:outputText>
+		<p:message for="calendarField" display="icon" />
+	</span>
+</composite:implementation>
+
+</body>
+</html> 

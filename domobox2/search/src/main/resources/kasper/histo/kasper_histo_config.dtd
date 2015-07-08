@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT historisation (monitoredItem)+>
+
+<!ELEMENT monitoredItem (dto,monitoredFields,displayFields)>
+<!ATTLIST monitoredItem
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT dto EMPTY>
+<!ATTLIST dto
+  xmlns CDATA #FIXED ''
+  class NMTOKEN #REQUIRED
+  code CDATA #REQUIRED>
+
+<!ELEMENT monitoredFields (monitoredField)+>
+<!ATTLIST monitoredFields
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT displayFields (displayField)*>
+<!ATTLIST displayFields
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT monitoredField EMPTY>
+<!ATTLIST monitoredField
+  xmlns CDATA #FIXED ''
+  code NMTOKEN #REQUIRED
+  default NMTOKEN #IMPLIED>
+
+<!ELEMENT displayField EMPTY>
+<!ATTLIST displayField
+  xmlns CDATA #FIXED ''
+  code NMTOKEN #REQUIRED
+  origin NMTOKEN #REQUIRED>

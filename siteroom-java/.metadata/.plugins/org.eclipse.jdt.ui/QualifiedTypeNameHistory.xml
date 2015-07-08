@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.entite.atmega.CodeSketch"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="lombok.extern.java.Log"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.entite.senseur.PassifTest"/>
+<fullyQualifiedTypeName name="java.lang.ClassLoader"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.entite.senseur.Senseur"/>
+<fullyQualifiedTypeName name="lombok.Delegate"/>
+<fullyQualifiedTypeName name="lombok.Setter"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.entite.carte.Modele"/>
+<fullyQualifiedTypeName name="lombok.Getter"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.service.implementation.CarteServiceImplementation"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.service.CarteService"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="org.apache.velocity.app.VelocityEngine"/>
+<fullyQualifiedTypeName name="org.apache.velocity.runtime.RuntimeConstants"/>
+<fullyQualifiedTypeName name="org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader"/>
+<fullyQualifiedTypeName name="org.apache.velocity.Template"/>
+<fullyQualifiedTypeName name="org.apache.velocity.VelocityContext"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.tools.PropertiesTools"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.service.implementation.CodeCreatorHandler"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.model.entite.carte.Carte"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.io.Writer"/>
+<fullyQualifiedTypeName name="lombok.SneakyThrows"/>
+<fullyQualifiedTypeName name="lombok.Cleanup"/>
+<fullyQualifiedTypeName name="com.sun.comm.Win32Driver"/>
+<fullyQualifiedTypeName name="java.util.Enumeration"/>
+<fullyQualifiedTypeName name="javax.comm.CommPortIdentifier"/>
+<fullyQualifiedTypeName name="fr.infini.domotique.communication.service.implementation.CommunicationServiceImplementation"/>
+</qualifiedTypeNameHistroy>

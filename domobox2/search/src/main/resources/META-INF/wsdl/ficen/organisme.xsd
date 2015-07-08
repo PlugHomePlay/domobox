@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://ficen.csn.fr/wsdl/formacen/organisme" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ficen.csn.fr/wsdl/formacen/organisme" xmlns:pref="http://ficen.csn.fr/wsdl/transverse/types">
+	<import schemaLocation="transverse.xsd" namespace="http://ficen.csn.fr/wsdl/transverse/types"></import>
+	<complexType name="Organisme">
+		<sequence>
+			<element
+				name="codeCrpcen"
+				type="pref:codeCrpCen"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="codeCsn"
+				type="pref:codeCsn"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="nom"
+				type="pref:libelle250"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="sigle"
+				type="pref:libelle50" minOccurs="1" maxOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+</schema>

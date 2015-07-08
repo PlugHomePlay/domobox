@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag text</title>
+</head>
+<body>
+
+<composite:interface>	
+	<composite:attribute name="bean" required="true"/>
+    <composite:attribute name="property" required="true"/>
+    <composite:attribute name="style"/>
+    <composite:attribute name="styleClass"/>
+    <composite:attribute name="readonly" default="true"/>
+    <composite:attribute name="forceMandatory" default="false"/>
+    <composite:attribute name="size"/>
+    <composite:attribute name="onchange"/>
+    <composite:attribute name="disabled" default="false"/>
+</composite:interface>
+
+<composite:implementation>
+		<span class="field">
+			<h:inputText id="writableTextField" 
+						 style="#{cc.attrs.style}" 
+						 styleClass="#{cc.attrs.styleClass}" 
+						 value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}" 				 
+						 required="#{cc.attrs.forceMandatory or UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required}"
+						 requiredMessage="#{msg.msgChampObligatoireMap[UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label]}"
+						 rendered="#{!cc.attrs.readonly}"
+						 size="#{cc.attrs.size}"
+						 onchange="#{cc.attrs.onchange}"
+						 disabled="#{cc.attrs.disabled}"
+						 >
+				<f:validator validatorId="domainValidator"/>
+			    <f:converter converterId="domainConverter"/>
+			    <f:attribute name="dtField" 
+					value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>
+			</h:inputText>
+			<h:outputText style="#{cc.attrs.style}" 
+						  styleClass="#{cc.attrs.styleClass}"
+						  value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].unit}"
+						  rendered="#{!cc.attrs.readonly and !(empty UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].unit)}"/>
+			
+			<p:message for="writableTextField" display="icon" rendered="#{!cc.attrs.readonly}"/>
+			<h:outputText id="readableTextField" 
+						  style="#{cc.attrs.style}" 
+						  styleClass="#{cc.attrs.styleClass}"
+						  value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}"
+						  rendered="#{cc.attrs.readonly}">			
+				<f:converter converterId="domainConverter"/>
+				<f:attribute name="dtField" 
+					value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>		
+			</h:outputText>
+			<h:outputText style="#{cc.attrs.style}" 
+						  styleClass="#{cc.attrs.styleClass}"
+						  value=" #{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].unit}"
+						  rendered="#{cc.attrs.readonly and !(empty UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].unit)}"/>
+			<p:message for="readableTextField" display="icon" rendered="#{cc.attrs.readonly}"/>
+		</span>
+</composite:implementation>
+
+</body>
+</html> 

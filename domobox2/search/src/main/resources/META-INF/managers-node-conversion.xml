@@ -1,0 +1,139 @@
+<?xml version =	'1.0' encoding = 'ISO-8859-1'?>
+<!-- Utilise en execution -->
+<modules>
+	<module name="kasper-kernel">
+		<manager name="LocaleManager" class="kasperimpl.locale.LocaleManagerImpl" initClass="fr.csn.suiviFormation.boot.initializer.LocaleManagerInitializer">
+			<param name="multilingual" value="false" />
+			<param name="locales" value="fr_FR" />
+		</manager>
+		<manager name="ResourceManager" class="kasperimpl.resource.ResourceManagerImpl">
+			<plugin id="javaRR" name="ResourceResolver" class="kasperimpl.resource.plugins.java.ClassPathResourceResolverPlugin" />
+			<plugin id="servlerRR" name="ResourceResolver" class="kasperimpl.ui.plugins.servlet.ServletResourceResolverPlugin" />
+			<plugin id="urlRR" name="ResourceResolver" class="kasperimpl.resource.plugins.url.URLResourceResolverPlugin" />
+		</manager>
+		<manager name="ConfigManager" class="kasperimpl.config.ConfigManagerImpl">
+			<plugin name="ConfigPlugin" class="kasperimpl.config.plugins.xml.XmlConfigPlugin">
+				<param name="url" value="/META-INF/application-config.xml" />
+			</plugin>
+			<plugin name="ConfigPluginExterne" class="kasperimpl.config.plugins.xml.XmlConfigPlugin">
+				<param name="url" value="{configExterne}" />
+			</plugin>
+		</manager>
+	</module>
+
+	<module name="analytica-agent">
+		<manager name="AgentManager" class="fr.csn.suiviFormation.util.DummyAgentManagerImpl" />
+	</module>
+
+	<module name="kasper-commons">
+		<manager name="ScriptManager" class="kasperimpl.script.ScriptManagerImpl">
+			<plugin name="ExpressionEvaluatorPlugin" class="kasperimpl.script.plugins.janino.JaninoExpressionEvaluatorPlugin" />
+		</manager>
+
+		<manager name="AnalyticsManager" class="kasperimpl.analytics.AnalyticsManagerImpl">
+			<plugin name="AnalyticsAgentPlugin" class="kasperimpl.analytics.plugins.analytica.AnalyticaAgentPlugin" />
+		</manager>
+
+		<manager name="KSecurityManager" class="kasperimpl.security.KSecurityManagerImpl">
+			<param name="userSessionClassName" value="fr.csn.suiviFormation.security.SuiviFormationUserSession" />
+		</manager>
+
+		<manager name="SystemManager" class="kasperimpl.system.SystemManagerImpl" />
+		<manager name="CodecManager" class="kasperimpl.codec.CodecManagerImpl" />
+		<manager name="CacheManager" class="kasperimpl.cache.CacheManagerImpl">
+			<plugin name="CachePlugin" class="kasperimpl.cache.plugins.map.MapCachePlugin" />
+		</manager>
+		<manager name="KTransactionManager" class="kasperimpl.transaction.KTransactionManagerImpl" />
+		<manager name="DataBaseManager" class="kasperimpl.database.DataBaseManagerImpl">
+			<plugin name="ConnectionProviderPlugin" class="kasperimpl.database.plugins.connection.datasource.DataSourceConnectionProviderPlugin">
+				<param name="source" value="{db.source}" />
+				<param name="classname" value="{db.classname}" />
+			</plugin>
+		</manager>
+		<manager name="CollectionsManager" class="kasperimpl.collections.CollectionsManagerImpl"/>
+
+		<manager name="FileManager" class="kasperimpl.file.FileManagerImpl" />
+
+		<manager name="WorkManager" class="kasperimpl.work.WorkManagerImpl">
+			<param name="workerCount" value="10" />
+		</manager>
+
+		<manager name="PublisherManager" class="kasperimpl.publisher.PublisherManagerImpl">
+			<plugin name="MergerPlugin" class="kasperimpl.publisher.plugins.odt.MergerPluginOpenOffice" />
+		</manager>
+
+		<manager name="ConverterManager" class="kasperimpl.converter.ConverterManagerImpl">
+			<plugin name="ConverterPlugin" class="kasperimpl.converter.plugins.openoffice.OpenOfficeVersatileConverterPlugin">
+				<param name="unohost" value="localhost" />
+				<param name="unoport" value="{openOffice.port}" />
+				<param name="startCmd" value="{openOffice.startCmd}" />
+				<param name="killCmd" value="{openOffice.killCmd}" />
+				<param name="cardSize" value="{openOffice.cardSize}" />
+			</plugin>
+		</manager>
+
+		<manager name="NodeManager" class="kasperimpl.node.NodeManagerImpl">
+			<plugin id="node1" name="NodePlugin" class="kasperx.work.plugins.rest.RestDistributedWorkNodePlugin">
+				<param name="nodeId" value="{nodeId1}" />
+				<param name="serverUrl" value="{webappUrl1}" />
+				<param name="workTypes" value="ConverterWork" />
+			</plugin>
+			<plugin id="node2" name="NodePlugin" class="kasperx.work.plugins.rest.RestDistributedWorkNodePlugin">
+				<param name="nodeId" value="{nodeId2}" />
+				<param name="serverUrl" value="{webappUrl2}" />
+				<param name="workTypes" value="ConverterWork" />
+			</plugin>
+		</manager>
+
+		<manager name="PersistenceManager" class="kasperimpl.persistence.PersistenceManagerImpl" initClass="fr.csn.suiviFormation.boot.initializer.PersistenceManagerInitializer">
+			<plugin id="DefaultStorePlugin" name="StorePlugin" class="kasperimpl.persistence.plugins.postgresql.PostgreSqlAutoIncrementStorePlugin" />
+	        <plugin name="FileStorePlugin" class="kasperimpl.persistence.plugins.filestore.fs.FsFileStorePlugin">
+	        	<param name="path" value="{dbfs.filePath}" />
+	        </plugin>
+		</manager>
+		<manager name="EnvironmentManager" class="kasperimpl.environment.EnvironmentManagerImpl">
+			<plugin id="KPRPlugin" name="LoaderPlugin" class="kasperimpl.environment.plugins.loaders.kpr.KprLoaderPlugin">
+				<param name="kpr" value="/fr/csn/suiviFormation/execution.kpr" />
+			</plugin>
+			<plugin id="ClassesPlugin" name="LoaderPlugin" class="kasperimpl.environment.plugins.loaders.java.AnnotationLoaderPlugin">
+				<param name="classes" value="fr.csn.suiviFormation.domain.DtDefinitions" />
+			</plugin>
+			<plugin id="SecurityPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.security.SecurityDynamicRegistryPlugin">
+				<param name="url" value="/META-INF/basic-auth-config.xml" />
+			</plugin>
+			<plugin id="DomainPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.domain.DomainDynamicRegistryPlugin" />
+			<plugin id="TaskPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.task.TaskDynamicRegistryPlugin" />
+			<plugin id="PersistencePlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.persistence.PersistenceDynamicRegistryPlugin" />
+			<plugin id="PublisherPlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.publisher.PublisherDynamicRegistryPlugin" />
+			<plugin id="FilePlugin" name="DynamicRegistryPlugin" class="kasperimpl.environment.plugins.registries.file.FileDynamicRegistryPlugin" />
+		</manager>
+
+		<module name="kasper-job">
+			<manager name="JobManager" class="kasperimpl.job.JobManagerImpl" initClass="fr.csn.suiviFormation.boot.initializer.JobManagerInitializer">
+				<param name="job.enable" value="{job.enable}" />
+				<plugin name="SchedulerPlugin" class="kasperimpl.job.plugins.basic.BasicSchedulerPlugin" />
+			</manager>
+		</module>
+
+		<manager name="ComponentManager" class="kasperimpl.component.ComponentManagerImpl">
+			<plugin name="ConfigFactoryPlugin" class="kasperimpl.component.plugins.config.xml.XmlConfigFactoryPlugin">
+				<param name="componentConfiguration" value="{componentConfiguration}" />
+			</plugin>
+			<plugin name="ComponentRefFactoryPlugin" class="kasperimpl.component.plugins.aop.jdk.JDKComponentRefFactoryPlugin" />
+		</manager>
+	</module>
+
+
+
+	<module name="kasper-export">
+		<manager name="ExportManager" class="kasperimpl.export.ExportManagerImpl" initClass="fr.csn.suiviFormation.boot.initializer.ExportManagerInitializer">
+			<plugin name="ExporterPlugin" class="kasperimpl.export.plugins.excel.ExcelExporterPlugin" />
+			<plugin name="CsvPlugin" class="kasperimpl.export.plugins.csv.CSVExporterPlugin" />
+		</manager>
+	</module>
+
+	<module name="kasper-ui">
+		<manager name="SsoManager" class="fr.csn.suiviFormation.jsfui.SuiviFormationSsoManager" />
+	</module>
+
+</modules>

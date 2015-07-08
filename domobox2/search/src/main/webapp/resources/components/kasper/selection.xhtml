@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:k="http://java.sun.com/jsf/composite/components/kasper">
+<head>
+<title>Tag selection</title>
+</head>
+<body>
+
+
+	<composite:interface>
+		<composite:attribute name="bean" required="true" />
+		<composite:attribute name="property" required="true" />
+		<composite:attribute name="mode" required="true" />
+		<composite:valueHolder name="items" required="false" />
+		<composite:attribute name="display" required="false" />
+		<composite:attribute name="nullLabel" required="false" default=""/>
+		<composite:attribute name="update" />
+		<composite:attribute name="useListener" default="false" />
+		<composite:attribute name="listener" method-signature="void listener()"/>
+		<composite:attribute name="process" default="@this"/>
+		<composite:attribute name="style"/>
+		<composite:attribute name="forceMandatory" default="false" />
+	</composite:interface>
+
+	<composite:implementation>
+		<ui:fragment rendered="#{cc.attrs.items != null}">
+			<k:selectionList bean="#{cc.attrs.bean}"
+				property="#{cc.attrs.property}" mode="#{cc.attrs.mode}"
+				items="#{cc.attrs.items}" display="#{cc.attrs.display}" nullLabel="#{cc.attrs.nullLabel}"
+				update="#{cc.attrs.update}" useListener="#{cc.attrs.useListener}" listener="#{cc.attrs.listener}"
+				process="#{cc.attrs.process}"
+				style="{cc.attrs.style}"				
+				forceMandatory="#{cc.attrs.forceMandatory}"/>
+		</ui:fragment>
+		<ui:fragment rendered="#{cc.attrs.items == null}">
+			<k:selectionMasterData bean="#{cc.attrs.bean}"
+				property="#{cc.attrs.property}" mode="#{cc.attrs.mode}" nullLabel="#{cc.attrs.nullLabel}" 
+				update="#{cc.attrs.update}" useListener="#{cc.attrs.useListener}" listener="#{cc.attrs.listener}"
+				process="#{cc.attrs.process}"
+				style="#{cc.attrs.style}"
+				forceMandatory="#{cc.attrs.forceMandatory}"/>
+		</ui:fragment>
+	</composite:implementation>
+
+</body>
+</html>

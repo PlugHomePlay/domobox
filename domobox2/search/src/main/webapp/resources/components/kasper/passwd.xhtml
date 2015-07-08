@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag passwd</title>
+</head>
+<body>
+
+<composite:interface>	
+	<composite:attribute name="bean" required="true" />
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="mode" required="true" />
+</composite:interface>
+
+<composite:implementation >	   
+		<span class="field">
+			<h:inputSecret disabled="#{cc.attrs.mode eq 'READ'}" id="#{cc.attrs.property}" value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}" 
+						   required="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required}"
+						   requiredMessage="#{msg.msgChampObligatoireMap[UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label]}">			
+				<f:converter converterId="domainConverter"/>
+				<f:validator validatorId="domainValidator"/>						
+				<f:attribute name="dtField" 
+					value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>		
+			</h:inputSecret>
+			<p:message for="#{cc.attrs.property}" display="icon" />
+		</span>
+</composite:implementation>
+
+</body>
+</html> 

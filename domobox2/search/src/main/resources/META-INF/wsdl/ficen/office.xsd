@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://ficen.csn.fr/wsdl/office/types" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ficen.csn.fr/wsdl/office/types" xmlns:Q1="http://ficen.csn.fr/wsdl/transverse/types">
+
+    <import schemaLocation="transverse.xsd" namespace="http://ficen.csn.fr/wsdl/transverse/types"></import>
+    <complexType name="CodesOffice">
+		<annotation>
+			<documentation>Code CSN de l'office</documentation>
+		</annotation>
+		<sequence>
+			<element name="codeOfficeCrpcen" type="Q1:codeCrpCen">
+				<annotation>
+					<documentation>Code CRPCEN de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="codeOfficeCsn" type="Q1:codeCsn">
+				<annotation>
+					<documentation>Code CSN de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="notairesCodeCsn" type="tns:PeriodeNotaire" maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>Codes CSN des notaires</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="CodesOfficeRequest">
+		<sequence>
+			<element name="codeCrpcen" type="Q1:codeCrpCen" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Code Crpcen de l'office. Obligatoire</documentation>
+				</annotation>
+			</element>
+			<element name="dateDebut" type="date" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Date de début de la période</documentation>
+				</annotation>
+			</element>
+			<element name="dateFin" type="date" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Date de fin de la période</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="OfficeInfo">
+		<sequence>
+			<element name="codeCrpcen" type="Q1:codeCrpCen" maxOccurs="1" minOccurs="1"></element>
+			<element name="nom" type="Q1:libelle250" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Intitulé pour un office individuel, dénomination sociale abrégée pour une STON</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne1" type="Q1:ligneAdresse" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 1 de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne2" type="Q1:ligneAdresse" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 2 de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne3" type="Q1:ligneAdresse" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 3 de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne4" type="Q1:ligneAdresse" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 4 de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne5" type="Q1:ligneAdresse" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 5 de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="codePostal" type="Q1:codePostal" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Code postal de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="ville" type="Q1:ville" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Ville de l'adresse géographique de l'office</documentation>
+				</annotation>
+			</element>
+			<element name="telephone" type="Q1:telephone" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Téléphone associé à l'office</documentation>
+				</annotation>
+			</element>
+			<element name="telecopie" type="Q1:telephone" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Numéro de télécopie associé à l'office</documentation>
+				</annotation>
+			</element>
+			<element name="courriel" type="Q1:courriel" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Courriel associée à l'office</documentation>
+				</annotation>
+			</element>
+			<element name="notaires" type="tns:NotaireInfoMinimale" maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>Notaires présents dans l'office à la date de la demande</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="NotaireInfoMinimale">
+		<sequence>
+			<element name="nom" type="Q1:nom" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Nom du notaire</documentation>
+				</annotation>
+			</element>
+			<element name="prenom" type="Q1:prenom" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Prénom du notaire</documentation>
+				</annotation>
+			</element>
+			<element name="telephone" type="Q1:telephone" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Téléphone du notaire</documentation>
+				</annotation>
+			</element>
+			<element name="courriel" type="Q1:courriel" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Courriel du notaire</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+    <complexType name="OfficeInfoMinRattachement">
+    	<annotation>
+    		<documentation>Information minimale de l'office avec le département de rattachement</documentation>
+    	</annotation>
+    	<sequence>
+    		<element name="codeCrpcen" type="Q1:codeCrpCen" maxOccurs="1" minOccurs="0">
+    			<annotation>
+    				<documentation>Code CRPCEN de l'office</documentation>
+    			</annotation>
+    		</element>
+    		<element name="codeCsn" type="Q1:codeCsn" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Code CSN de l'office. Identifiant externe</documentation>
+    			</annotation>
+    		</element>
+    		<element name="nom" type="Q1:libelle250" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Intitulé pour un office individuel, dénomination sociale abrégée pour une STON</documentation>
+    			</annotation>
+    		</element>
+    		<element name="departement" type="Q1:codeDepartement" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Code du département de rattachement de l'office</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    	</complexType>
+
+    <complexType name="OfficeInfoRattachementPersonnel">
+    	<annotation>
+    		<documentation>OfficeInfoMinRattachemennt + chiffres sur le personnel</documentation>
+    	</annotation>
+    	<complexContent>
+    		<extension base="tns:OfficeInfoMinRattachement">
+    			<sequence>
+    				<element name="nbNotaires" type="int" minOccurs="1" maxOccurs="1">
+    					<annotation>
+    						<documentation>Nombre total de notaires dans l'office</documentation>
+    					</annotation>
+    				</element>
+    				<element name="nbNotairesSalaries" type="int" maxOccurs="1" minOccurs="1">
+    					<annotation>
+    						<documentation>Nombre de notaires salariés dans l'office</documentation>
+    					</annotation>
+    				</element>
+    				<element name="nbCollaborateurs" type="int" maxOccurs="1" minOccurs="1">
+    					<annotation>
+    						<documentation>Nombres de collaborateurs dans l'office (non référencés comme notaires)</documentation>
+    					</annotation></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="TotalisationOffice">
+    	<annotation>
+    		<documentation>Totalisation des offices non supprimés par département</documentation>
+    	</annotation>
+    	<sequence>
+    		<element name="departement" type="Q1:codeDepartement" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Code du département</documentation>
+    			</annotation></element>
+    		<element name="nbOffices" type="int" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Nombres d'office non supprimés dans le département</documentation>
+    			</annotation></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="PeriodeNotaire">
+    	<annotation>
+    		<documentation>Période d'activité d'un notaire</documentation>
+    	</annotation>
+    	<sequence>
+    		<element name="codeCsn" type="Q1:codeCsn" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Code CSN du notaire</documentation>
+    			</annotation>
+    		</element>
+    		<element name="nom" type="Q1:nom" maxOccurs="1" minOccurs="0">
+    			<annotation>
+    				<documentation>Nom du notaire</documentation>
+    			</annotation>
+    		</element>
+    		<element name="prenom" type="Q1:prenom" maxOccurs="1" minOccurs="0">
+    			<annotation>
+    				<documentation>Prénom du notaire</documentation>
+    			</annotation>
+    		</element>
+    		<element name="dateDebutPresence" type="date" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Date de début de présence par rapport à un intervalle de référence. Vaut au moins le début de l'intervalle de référence.</documentation>
+    			</annotation>
+    		</element>
+    		<element name="dateFinPresence" type="date" maxOccurs="1" minOccurs="1">
+    			<annotation>
+    				<documentation>Date de fin de présence par rapport à un intervalle de référence. Vaut au plus la fin de l'intervalle de référence.</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:k="http://java.sun.com/jsf/composite/components/kasper">
+<head>
+<title>Tag selection</title>
+</head>
+<body>
+
+<composite:interface>	            	
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="items" required="false" />            
+    <composite:attribute name="display" required="false" />         
+    <composite:attribute name="nullLabel" required="false" />
+    <composite:attribute name="mode" required="false" /> 
+    <composite:attribute name="update" />
+    <composite:attribute name="useListener" default="false" />
+    <composite:attribute name="listener" method-signature="void listener()"/>
+    <composite:attribute name="style"/>
+    <composite:attribute name="forceMandatory" default="false" />
+    <composite:attribute name="process" default="@this"/>
+</composite:interface>
+
+<composite:implementation>
+	<k:selection bean="#{cc.parent.attrs.bean}"
+				property="#{cc.attrs.property}" 				
+				mode="#{cc.attrs.mode eq null ? cc.parent.attrs.mode: cc.attrs.mode}"
+				items="#{cc.attrs.items}"
+				display="#{cc.attrs.display}"
+				nullLabel="#{cc.attrs.nullLabel}"
+				process="#{cc.attrs.process}"
+				style="#{cc.attrs.style}"
+				update="#{cc.attrs.update}" 
+				useListener="#{cc.attrs.useListener}" 
+				listener="#{cc.attrs.listener}"
+				forceMandatory="#{cc.attrs.forceMandatory}"/>				    		 	
+</composite:implementation>
+
+</body>
+</html> 

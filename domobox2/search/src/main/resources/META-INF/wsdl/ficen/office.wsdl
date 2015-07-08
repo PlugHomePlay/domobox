@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:office="http://ficen.csn.fr/wsdl/office/types" xmlns:tns="http://ficen.csn.fr/wsdl/office/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="office" targetNamespace="http://ficen.csn.fr/wsdl/office/" xmlns:xsd1="http://ficen.csn.fr/wsdl/transverse/types">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://ficen.csn.fr/wsdl/transverse/types" schemaLocation="transverse.xsd"></xsd:import>
+			<xsd:import namespace="http://ficen.csn.fr/wsdl/office/types" schemaLocation="office.xsd"></xsd:import>
+		</xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ficen.csn.fr/wsdl/office/"><xsd:import schemaLocation="office.xsd" namespace="http://ficen.csn.fr/wsdl/office/types"></xsd:import>
+        	<xsd:element name="CodesOfficeRequest" type="office:CodesOfficeRequest"></xsd:element>
+        	<xsd:element name="CodesOfficeResponse" type="office:CodesOffice"></xsd:element>
+        	<xsd:element name="OfficeInfoRequest" type="xsd:string"></xsd:element>
+        	<xsd:element name="OfficeInfoResponse" type="office:OfficeInfo"></xsd:element></xsd:schema>
+    </wsdl:types>
+	<wsdl:message name="getOfficeCodesCSNRequest">
+		<wsdl:part name="selection" element="tns:CodesOfficeRequest">
+			<wsdl:documentation>Code CRPCEN de l'office avec date de début et date de fin pour déterminer les codes notaires à retourner</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOfficeCodesCSNResponse">
+		<wsdl:part name="codes" element="tns:CodesOfficeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getOfficeInfoRequest">
+		<wsdl:part name="code" element="tns:OfficeInfoRequest">
+			<wsdl:documentation>Code CRPCEN de l'office</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOfficeInfoResponse">
+		<wsdl:part name="info" element="tns:OfficeInfoResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OfficeMandatoryException">
+		<wsdl:part name="mandatoryException" type="xsd1:MandatoryException"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OfficeSystemException">
+		<wsdl:part name="systemException" type="xsd1:SystemException"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="officeEndPoint">
+		<wsdl:operation name="getOfficeCodesCSN">
+			<wsdl:input message="tns:getOfficeCodesCSNRequest" />
+			<wsdl:output message="tns:getOfficeCodesCSNResponse" />
+			<wsdl:fault name="officeMandatoryException" message="tns:OfficeMandatoryException"></wsdl:fault>
+			<wsdl:fault name="officeSystemException" message="tns:OfficeSystemException"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getOfficeInfo">
+			<wsdl:documentation>Récupération, à partir du code CRPCEN d'un office, des informations de l'office et des notaires présent dans l'office au moment de l'interrogatio</wsdl:documentation>
+			<wsdl:input message="tns:getOfficeInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:getOfficeInfoResponse"></wsdl:output>
+			<wsdl:fault name="officeMandatoryException" message="tns:OfficeMandatoryException"></wsdl:fault>
+			<wsdl:fault name="officeSystemException" message="tns:OfficeSystemException"></wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="officeSOAP" type="tns:officeEndPoint">
+
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getOfficeCodesCSN">
+
+			<soap:operation soapAction="http://ficen.csn.fr/office/getOfficeCodesCSN" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="officeMandatoryException">
+				<soap:fault use="literal" name="officeMandatoryException" />
+			</wsdl:fault>
+			<wsdl:fault name="officeSystemException">
+				<soap:fault use="literal" name="officeSystemException" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getOfficeInfo">
+			<soap:operation soapAction="http://ficen.csn.fr/office/getOfficeInfo" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="officeMandatoryException">
+				<soap:fault use="literal" name="officeMandatoryException" />
+			</wsdl:fault>
+			<wsdl:fault name="officeSystemException">
+				<soap:fault use="literal" name="officeSystemException" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="officeService">
+		<wsdl:port binding="tns:officeSOAP" name="officePort">
+			<soap:address location="http://ficen.csn.fr/office" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

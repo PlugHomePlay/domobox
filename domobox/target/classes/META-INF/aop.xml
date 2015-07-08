@@ -1,0 +1,13 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+ <weaver>
+  <!-- only weave classes in our application-specific packages -->
+  <include within="fr.infini.domobox..*"/>
+ </weaver>
+
+ <aspects>
+  <!-- weave in just this aspect -->
+  <aspect name="fr.infini.domobox.aspect.Observer"/>
+ </aspects>
+
+</aspectj>

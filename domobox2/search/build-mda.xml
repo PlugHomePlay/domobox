@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ====================================================================== -->
+<!-- Ant build file (http://ant.apache.org/) for Ant 1.6.2 or above.        -->
+<!-- ====================================================================== -->
+<project name="kasper-formacen-mda" default="generate-sources">
+	<!-- =================================================================== -->
+	<!-- Proprietes                                                          -->
+	<!-- =================================================================== -->
+
+	<property file="build-mda.properties" />
+
+	<property name="build.compiler" value="extJavac" />
+
+	<taskdef name="fmpp" classname="fmpp.tools.AntTask">
+		<classpath>
+			<pathelement location="src/dev/fmpp_0.9.14/lib/fmpp.jar" />
+			<pathelement location="src/dev/fmpp_0.9.14/lib/freemarker.jar" />
+			<pathelement location="src/dev/fmpp_0.9.14/lib/oro.jar" />
+			<pathelement location="src/dev/fmpp_0.9.14/lib/resolver.jar" />
+			<pathelement location="src/dev/fmpp_0.9.14/lib/bsh.jar" />
+		</classpath>
+	</taskdef>
+	<pathconvert property="class.path">
+		<path>
+			<fileset dir="./src/main/webapp/WEB-INF/lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+	</pathconvert>
+	<property name="src.dir" location="./src/main/java" />
+<!-- 	<property name="build.dir" location="./target/classes" /> -->
+	<property name="build.dir" location="./src/main/webapp/WEB-INF/classes" />
+
+	<target name="generate-navigationConst">
+		<fmpp sourceRoot="." outputRoot="src/main/javagen/" logFile="target/log.fmpp" quiet="true">
+			<xmlRenderings>[{
+			        ifDocumentElementIs: faces-config
+			        template: src/main/resources/kasperimpl/mda/plugins/jsfui/NavigationConst.ftl
+					xmlns: {D: http://java.sun.com/xml/ns/javaee}
+			    }]
+			</xmlRenderings>
+			<modes>[
+				renderXml(src/main/webapp/WEB-INF/faces-config.xml)
+			    ignore(**)
+			] </modes>
+		</fmpp>
+	</target>
+	<!-- ====================================================================== -->
+	<!-- Generation des classes de tests                                        -->
+	<!-- ====================================================================== -->
+	<target name="generate-clean" description="Nettoyage des repertoires avant la génération du code Kasper">
+		<echo message="Suppression de .java et .properties du répertoire ${basedir}/${targetGenDir}" />
+		<delete dir="${targetGenDir}" includeemptydirs="true">
+			<include name="**/*.java" />
+			<include name="**/*.properties" />
+		</delete>
+	</target>
+
+	<target name="compile-whatisneeded" description="Compile les classes spécifiques pour la génération de code">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includes="**/TaskEngineSelectDyn.java" includeantruntime="false" classpath="${build.dir};${class.path};${compile_classpath}" debug="on" />
+	</target>
+
+	<target name="generate-sources" depends="compile-whatisneeded,generate-navigationConst" description="Generation des sources de la demo">
+		<!--
+        <echo message="runtime classpath: ${runtime_classpath}"/>
+        <echo message="test classpath:    ${test_classpath}"/>
+        <echo message="plugin classpath:  ${plugin_classpath}"/>
+		-->
+		<echo message="build.dir:  ${build.dir}" />
+		<echo message="class.path:  ${class.path}" />
+		<echo message="Génération des classes Java" />
+		<!-- il faut fork="true" si exécution avec "same JRE" dans eclipse -->
+		<java dir="." fork="true" maxmemory="128m" classname="namespace2java.NameSpace2Java" failonerror="true" classpath="${build.dir};${class.path};${compile_classpath}">
+			<arg value="file:build-mda.properties" />
+		</java>
+	</target>
+</project>

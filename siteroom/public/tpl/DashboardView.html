@@ -1,0 +1,113 @@
+<script type="text/javascript">
+	var objs = {
+	  "lumiere":{"ht":"<div class=\"row-fluid\"></div>","accept":".none"},
+	  "nomPiece":{"ht":"<div class=\"span2\"></div>","accept":".none"},
+	  "span3":{"ht":"<div class=\"span3\"></div>","accept":"[data*=span],[data*=btn]"},
+	  "span4":{"ht":"<div class=\"span4\"></div>","accept":"[data*=span],[data*=btn]"},
+	  "navbar":{"ht":"<div class=\"navbar\"><div class=\"navbar-inner\"><a class=\"brand\" href=\"#\">Brand</a><ul class=\"nav\"><li class=\"active\"><a href=\"#\">Home</a></li><li><a href=\"#\">Link</a></li><li><a href=\"#\">Link</a></li><li class=\"divider-vertical\"></li><li><a href=\"#\">More</a></li><li><a href=\"#\">Options</a></li></ul></div></div>","dropClass":".navbar-inner","accept":"[data*=btn]"},
+	  "btn":{"ht":"<button class=\"btn\">Button</button>","accept":".none"},
+	  "btn-group":{"ht":"<div class=\"btn-group\"><button class=\"btn\">Left</button><button class=\"btn\">Middle</button><button class=\"btn\">Right</button></div>","accept":".none"}
+	};
+
+	$('.item').draggable({
+	  	helper: "clone",
+	  	snap: true
+	});
+
+	var dropHandler = function(accept) {
+	  return {
+	    accept:accept,
+	    snap: true,
+	    greedy: true,
+	    hoverClass: "target",
+	    drop: function (event, ui) {
+			var item = $(ui.helper);
+			var d = item.attr("data");
+	   		var ht = $(objs[d].ht);
+			if (typeof d!="undefined" && objs[d].ht){
+	        	if (typeof objs[d].dropClass!="undefined"){
+	        		ht.appendTo(this).find(objs[d].dropClass).droppable(dropHandler(objs[d].accept)).draggable({snap:true,revert:"invalid"});
+	        	}
+	         	else {
+	           		ht.appendTo(this).droppable(dropHandler(objs[d].accept)).draggable({snap:true,revert:"invalid"});
+	         	}
+	       		ht.addClass("dropped");
+	          	ht.click(function(){
+	          
+	          if ($(this).hasClass("droppedSelected")) {
+	           	//off 
+	            $(this).removeClass("droppedSelected");
+	            $(this).find(".hanger").remove();
+	            $('.icon-trash').unbind('click');
+	          }
+	          else {
+	          	// on
+	            $('<div class="hanger"><i class="icon-trash" data=""></i></div>').appendTo(this);
+				$(this).addClass("droppedSelected");
+	            $('.icon-trash').click(function(){
+	          		$(this).parents(".dropped").remove();
+	        	});
+	            
+	          }
+			});
+	        }
+		}
+	}};
+
+	$('.screen').droppable({
+	  	snap: true,
+	  	hoverClass: "target",
+	    accept: "[data=lumiere],[data*=span],[data=navbar]",
+	    drop: function (event, ui) {
+			var item = $(ui.helper);
+			item.clone().appendTo(this).draggable();
+			var d = item.attr("data");
+			var ht = $(objs[d].ht);
+	      
+	      	if (typeof objs[d].dropClass!="undefined"){
+	        	ht.appendTo(this).find(objs[d].dropClass).droppable(dropHandler(objs[d].accept)).draggable({snap:true,revert:"invalid"});
+	      	}
+	      	else {
+	        	ht.appendTo(this).droppable(dropHandler(objs[d].accept)).draggable({snap:true,revert:"invalid"});
+	      	}
+	      	ht.addClass("dropped");
+	      	ht.click(function(){
+	          
+	          if ($(this).hasClass("droppedSelected")) {
+	           	//off 
+	            $(this).removeClass("droppedSelected");
+	            $(this).find(".hanger").remove();
+	            $('.icon-trash').unbind('click');
+	          }
+	          else {
+	          	// on
+	            $('<div class="hanger"><i class="icon-trash" data=""></i></div>').appendTo(this);
+				$(this).addClass("droppedSelected");
+	            $('.icon-trash').click(function(){
+	          		$(this).parents(".dropped").remove();
+	        	});
+	            
+	          }
+			});
+	    }
+	});
+</script>
+
+<div class="row-fluid">
+
+	<div class="holder span3">
+		<div class="item" data="lumiere">
+			lumiere
+		</div>
+		<div class="item" data="nomPiece">
+			Nom
+		</div>
+
+	</div>
+	<div class="special span9">
+		<div class="screen">
+
+		</div>
+	</div>
+</div>
+

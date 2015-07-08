@@ -1,0 +1,17 @@
+breadboard
+
+LED RGB 
+patte rouge -> 8
+patte anode -> gnd
+patte verte -> 7
+patte bleu  -> 6
+
+RFID-RC522
+SDA 	-> 10
+SCK		-> SCK
+MOSI	-> MOSI
+MISO	-> MISO
+IRQ		-> N/A
+GND 	-> gnd
+RST 	-> 5
+3.3V  	-> 3v3

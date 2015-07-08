@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE application-config PUBLIC "-//Kasper//DTD Kasper Application Config 1.0//EN"
+                              "http://www.kleegroup.com/dtd/kasper-application-config_1_0.dtd">
+
+<application-config>
+	<config name="admin.ecran">
+		<property name="recette" value="true" />
+		<property name="login" value="true" />
+	</config>
+	<config name="admin.job">
+		<property name="tousJobs" value="false" />
+	</config>
+	<config name="admin.publishing">
+		<property name="timeout" value="1200" />
+	</config>
+  	<config name="ficen.ws">
+  		<property name="url" value="http://localhost:8080/ficen/ficenwsrestreint/radarPort"/>
+  	</config>
+  	<config name="ficenFormacen.ws">
+  	    <property name="url" value="http://localhost:8080/ficen/ficenwsrestreint/formacenPort"/>
+  	</config>
+</application-config>

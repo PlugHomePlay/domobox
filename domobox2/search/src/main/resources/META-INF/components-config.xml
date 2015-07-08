@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE components-config PUBLIC "-//Kasper//DTD Kasper Components Config 1.0//EN"
+                              "http://www.kleegroup.com/dtd/kasper-components-config_1_0.dtd">
+
+<components-config>
+
+	<!-- Declaration : SERVICE -->
+	<component class="fr.csn.suiviFormation.services.administration.utilisateur.UtilisateurServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.authentification.AuthentificationServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.batch.BatchServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionDataServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionEditionServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.fileStore.FileServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.interfaces.InterfaceFicenRadarProxyImpl" />
+	<component class="fr.csn.suiviFormation.services.interfaces.InterfaceFicenFormacenProxyImpl" />
+	<component class="fr.csn.suiviFormation.services.interfaces.InterfacesServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.job.JobServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.referentiel.ReferentielServicesImpl" />
+	<component class="fr.csn.suiviFormation.services.formation.FormationServicesImpl" />
+		<component class="fr.csn.suiviFormation.services.statistiques.StatistiquesServicesImpl" />
+
+	<!-- Declaration : DAO & DAO brokers -->
+	<component class="fr.csn.suiviFormation.dao.model.formation.FormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.formation.FormationPAO" />
+	<component class="fr.csn.suiviFormation.dao.model.formation.InterruptionFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.formation.PlanDeFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.formation.PeriodeDeFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.formation.SupportPublicationDAO" />	
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.ContenuInformatifDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.DepartementDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.DroitDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.FileMetadataDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.EquivalenceDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.InstanceDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.InstanceDepartementDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.IntituleFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.LogTraitementAsynchroneDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.ManifestationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.NotaireDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.OfficeDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.OrganismeDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.OrganismeFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.ParametreTraitementAsyncDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.ReferentielPAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.RubriqueDAO" />	
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.SpecialiteNotaireDAO" />	
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.ThemeFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.TraitementAsynchroneDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.referentiel.TypeDeFormationDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.securite.DelegationAccesNotaireDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.securite.ProfilDroitDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.securite.UtilisateurDAO" />
+	<component class="fr.csn.suiviFormation.dao.model.administration.utilisateur.UtilisateurPAO" />
+	<component class="fr.csn.suiviFormation.dao.model.securite.SecuritePAO" />
+
+
+	<!-- Declaration : Helper -->
+	<component class="fr.csn.suiviFormation.security.SecurityHelper" />
+
+	<!-- Declaration : Handler d'impression -->
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionSyntheseInstanceHandler" />	
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionDeclarationAnnuelleNotaireHandler" />	
+	<component class="fr.csn.suiviFormation.services.edition.ImpressionDeclarationAnnuelleChambreHandler" />
+
+	<!-- Declaration : Transaction -->
+	<aspect>
+		<annotation class="kasper.transaction.Transactional" />
+		<advice class="kasperimpl.transaction.KTransactionInterceptor" />
+	</aspect>
+	<!-- Declaration : Logger de façade -->
+	<aspect>
+		<annotation class="kasper.component.FacadeComponent" />
+		<advice class="fr.csn.suiviFormation.util.FacadeLoggerInterceptor" />
+	</aspect>
+	<!-- Declaration : analytica -->
+	<aspect>
+		<annotation class="kasper.component.FacadeComponent" />
+		<advice class="com.kleegroup.analyticaimpl.spies.facade.FacadeSpyInterceptor" />
+	</aspect>
+
+
+</components-config>

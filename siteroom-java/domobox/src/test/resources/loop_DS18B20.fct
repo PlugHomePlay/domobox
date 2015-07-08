@@ -1,0 +1,17 @@
+ while(Serial.available() && toggleComplete == false) {
+   char inChar = (char)Serial.read();
+   if(inChar == 'E'){
+     toggleComplete = true;
+   }
+  }
+  
+  while(!Serial.available() && toggleComplete == true) {
+    float temp;
+
+    if(getTemperature(&temp)) {
+      Serial.println(temp);
+    }
+    toggleComplete = false;
+  }
+  
+delay(50);

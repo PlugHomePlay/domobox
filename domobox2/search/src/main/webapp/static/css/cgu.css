@@ -1,0 +1,41 @@
+
+/************************************************/
+/* CGU										*/
+/************************************************/
+
+.bloc-cgu {
+	margin-right: 100px;
+	margin-left: 100px;
+	margin-bottom: 100px;
+}
+
+.bloc-cgu .form-cgu {
+	max-height: 500px;
+	width: auto;
+	background-color: white;
+	color: black;
+	border: 1px solid #83868A;
+	overflow: auto;
+	padding: 10px;
+}
+
+.cgu {}
+.cgu .preambule-warn { border:1px solid red; background-color: #E7E7E7; border: 1px solid #dddddd; padding: 10px; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; }
+.cgu p { text-align: justify; }
+.cgu h1 { margin-top: 40px; border-bottom: 1px solid #dddddd; color: #424bbd; }
+.cgu ul.sommaire { list-style: none; margin: 0; padding: 0; }
+.cgu ul.sommaire li {padding: 5px 0; border-bottom:1px dashed #e2e2e2; margin: 0 30px; }
+.cgu ul.sommaire li a { color:#424bbd; }
+html .cgu a { color:blue; text-decoration: underline; }
+.cguPanel .ui-widget-content .ui-button { background:#424bbd; }
+.cguPanel .ui-widget-content .ui-button.greybt { background:#acb1b6; }
+
+
+
+.orange {
+	font-color:#FFA000;
+	color:#FFA000;
+}
+
+/* Traitement statut */
+.statutCell { vertical-align:middle; text-align: center; }

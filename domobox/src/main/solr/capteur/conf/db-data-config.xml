@@ -1,0 +1,16 @@
+<dataConfig>
+	<dataSource driver="org.postgresql.Driver" url="jdbc:postgresql://192.168.1.29:5432/domobox" user="domobox" password="domobox" readOnly="true" autoCommit="false" transactionIsolation="TRANSACTION_READ_COMMITED" holdability="CLOSE_CURSORS_AT_COMMIT"/>
+	<document>
+		<entity name="capteur" query="select * from capteur">
+			<field column="c_uid" name="id" />
+			<field column="NAME" name="nom" />
+			<field column="DESCRIPTION" name="description" />
+			<entity name="fabricant" query="select nom from fabricant where f_uid='${capteur.f_uid}'">
+				<field name="fabricant" column="nom"/>
+			</entity>
+			<entity name="role" query="select nom from role where r_uid='${capteur.r_uid}'">
+				<field name="role" column="nom"/>
+			</entity>
+		</entity>
+	</document>
+</dataConfig>

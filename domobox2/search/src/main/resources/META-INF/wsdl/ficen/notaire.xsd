@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://ficen.csn.fr/wsdl/formacen/notaire" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ficen.csn.fr/wsdl/formacen/notaire" xmlns:trn="http://ficen.csn.fr/wsdl/transverse/types">
+	<import schemaLocation="transverse.xsd" namespace="http://ficen.csn.fr/wsdl/transverse/types"></import>
+
+	<complexType name="Notaire">
+		<sequence>
+			<element
+				name="codeCsn"
+				type="trn:codeCsn"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="nom"
+				type="trn:nom"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="prenom"
+				type="trn:prenom"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="codeCsnOffice"
+				type="trn:codeCsn"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="datePrestation"
+				type="date"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="dateDeces"
+				type="date"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="dateRetrait"
+				type="date"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="listeSpecialites"
+				type="tns:Specialite" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Specialite">
+		<sequence>
+			<element
+				name="dateDebut"
+				type="date"
+				minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element
+				name="dateFin"
+				type="date"
+				minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element
+				name="libelle"
+				type="trn:libelle50" minOccurs="1" maxOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+</schema>

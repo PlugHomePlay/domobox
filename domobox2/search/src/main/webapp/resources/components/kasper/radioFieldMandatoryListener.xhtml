@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:k="http://java.sun.com/jsf/composite/components/kasper">
+<head>
+<title>Tag radio</title>
+</head>
+<body>
+
+<composite:interface>	
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="dir" default="vertical" shortDescription="dir=horizontal|vertical" required="true"/>    	
+    <composite:attribute name="items" required="true" />       
+    <composite:attribute name="display" required="true" />        
+    <composite:attribute name="process" default="@this"/>
+    <composite:attribute name="update" required="true"/>    
+    <composite:attribute name="listener" method-signature="void listener()" required="true"/>       
+</composite:interface>
+
+<composite:implementation >	
+    <k:radioMandatoryListener bean="#{cc.parent.attrs.bean}"
+			 property="#{cc.attrs.property}" 				
+			 mode="#{cc.parent.attrs.mode}"
+			 dir="#{cc.attrs.dir}"
+			 items="#{cc.attrs.items}"
+			 display="#{cc.attrs.display}"
+			 process="#{cc.attrs.process}"
+			 listener="#{cc.attrs.listener}"
+			 update="#{cc.attrs.update}" />	   						
+</composite:implementation>
+
+</body>
+</html> 

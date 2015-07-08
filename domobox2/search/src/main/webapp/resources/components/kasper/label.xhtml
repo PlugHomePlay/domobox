@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:composite="http://java.sun.com/jsf/composite">
+		<head>
+			<title>Tag label</title>
+		</head>
+		<body>
+
+			<composite:interface>
+				<composite:attribute name="bean" required="true" />
+				<composite:attribute name="property" required="true" />
+				<composite:attribute name="style" />
+				<composite:attribute name="styleClass" />
+				<composite:attribute name="readonly" />
+				<composite:attribute name="required" default="false" />
+			</composite:interface>
+
+			<composite:implementation>
+				<ui:fragment
+					rendered="#{!cc.attrs.readonly and ( cc.attrs.required or UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required)}">
+					<span class="mandatory">
+						<h:outputText
+							value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label} :"
+							styleClass="#{cc.attrs.styleClass}" />
+						<span class="icon">*</span>
+					</span>
+				</ui:fragment>
+				<ui:fragment
+					rendered="#{cc.attrs.readonly or ( !cc.attrs.required  and !UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].required) }">
+					<h:outputText
+						value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].label} :"
+						styleClass="#{cc.attrs.styleClass}" />
+				</ui:fragment>
+			</composite:implementation>
+
+		</body>
+</html>

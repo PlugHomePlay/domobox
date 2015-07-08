@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="formacen" targetNamespace="http://ficen.csn.fr/wsdl/formacen" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ficen.csn.fr/wsdl/formacen" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://ficen.csn.fr/wsdl/transverse/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+    	<xsd:schema
+    		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    		targetNamespace="http://ficen.csn.fr/wsdl/formacen"
+    		xmlns:Q1="http://ficen.csn.fr/wsdl/formacen/organisme"
+    		xmlns:Q2="http://ficen.csn.fr/wsdl/formacen/notaire"
+    		xmlns:Q3="http://ficen.csn.fr/wsdl/formacen/utilisateurporteurcle" xmlns:org="http://ficen.csn.fr/wsdl/organisation/types">
+    		<xsd:import
+    			schemaLocation="utilisateurporteurcle.xsd"
+    			namespace="http://ficen.csn.fr/wsdl/formacen/utilisateurporteurcle">
+    		</xsd:import>
+    		<xsd:import
+    			schemaLocation="notaire.xsd"
+    			namespace="http://ficen.csn.fr/wsdl/formacen/notaire">
+    		</xsd:import>
+    		<xsd:import
+    			schemaLocation="organisme.xsd"
+    			namespace="http://ficen.csn.fr/wsdl/formacen/organisme">
+    		</xsd:import>
+
+    		<xsd:element name="getNotaires">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+    					<xsd:element
+    						name="in"
+    						type="xsd:string">
+    					</xsd:element>
+
+    					<xsd:element
+    						name="in1"
+    						type="xsd:string">
+    					</xsd:element>
+    				</xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getOrganismesResponse">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element
+    						name="organismes"
+    						type="Q1:Organisme"
+    						minOccurs="0"
+    						maxOccurs="unbounded">
+    					</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getOrganismesFault">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element name="getOrganismesFault" type="xsd:string"></xsd:element>
+                        <xsd:element
+    						name="getOrganismesFault"
+    						type="xsd:string">
+    					</xsd:element>
+                        <xsd:element name="getOrganismesFault" type="xsd:string">
+		</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getNotairesResponse">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element
+    						name="notaires"
+    						type="Q2:Notaire"
+    						minOccurs="0"
+    						maxOccurs="unbounded">
+    					</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getNotairesFault">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element name="getNotairesFault" type="xsd:string"></xsd:element>
+                        <xsd:element
+    						name="getNotairesFault"
+    						type="xsd:string">
+    					</xsd:element>
+                        <xsd:element name="getNotairesFault" type="xsd:string">
+		</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getUtilisateursPorteurCle">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element name="in" type="xsd:string"></xsd:element>
+                        <xsd:element
+    						name="in"
+    						type="xsd:string">
+    					</xsd:element>
+                        <xsd:element name="in" type="xsd:string">
+		</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getUtilisateursPorteurCleResponse">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element
+    						name="utilisateurPorteurCle"
+    						type="Q3:UtilisateurPorteurCle"
+    						minOccurs="0"
+    						maxOccurs="unbounded">
+    					</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="getUtilisateursPorteurCleFault">
+    			<xsd:complexType>
+    				<xsd:sequence>
+
+                        <xsd:element name="getUtilisateursPorteurCleFault" type="xsd:string"></xsd:element>
+                        <xsd:element
+    						name="getUtilisateursPorteurCleFault"
+    						type="xsd:string">
+    					</xsd:element>
+                        <xsd:element name="getUtilisateursPorteurCleFault" type="xsd:string">
+		</xsd:element>
+                    </xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    	
+    	</xsd:schema>
+    	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    		<xsd:import
+    			namespace="http://ficen.csn.fr/wsdl/transverse/types"
+    			schemaLocation="transverse.xsd">
+    		</xsd:import></xsd:schema></wsdl:types>
+    <wsdl:message name="getOrganismesRequest">
+	</wsdl:message>
+    <wsdl:message name="getOrganismesResponse">
+    	<wsdl:part
+    		name="organismes"
+    		element="tns:getOrganismesResponse">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getOrganismesFault">
+    	<wsdl:part
+    		name="systemException"
+    		type="xsd1:SystemException">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNotairesRequest">
+    </wsdl:message>
+    <wsdl:message name="getNotairesResponse">
+    	<wsdl:part
+    		name="notaires" element="tns:getNotairesResponse">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNotairesFault">
+    	<wsdl:part
+    		name="systemException"
+    		type="xsd1:SystemException">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getUtilisateursPorteurCleRequest">
+    </wsdl:message>
+    <wsdl:message name="getUtilisateursPorteurCleResponse">
+    	<wsdl:part
+    		name="parameters" element="tns:getUtilisateursPorteurCleResponse">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getUtilisateurPorteurCleFault">
+    	<wsdl:part
+    		name="systemException"
+    		type="xsd1:SystemException">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="formacenSystemException">
+    	<wsdl:part
+    		name="systemException"
+    		type="xsd1:SystemException">
+    	</wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="formacenEndPoint">
+    	<wsdl:operation name="getOrganismes">
+    		<wsdl:documentation>Récupération de la liste des organisme</wsdl:documentation>
+    		<wsdl:input message="tns:getOrganismesRequest"></wsdl:input>
+    		<wsdl:output message="tns:getOrganismesResponse"></wsdl:output>
+            <wsdl:fault name="formacenSystemException" message="tns:formacenSystemException"></wsdl:fault>
+        </wsdl:operation>
+    	<wsdl:operation name="getNotaires">
+    		<wsdl:documentation>Récupération de la liste des notaire</wsdl:documentation>
+    		<wsdl:input message="tns:getNotairesRequest"></wsdl:input>
+    		<wsdl:output message="tns:getNotairesResponse"></wsdl:output>
+            <wsdl:fault name="formacenSystemException" message="tns:formacenSystemException"></wsdl:fault>
+        </wsdl:operation>
+    	<wsdl:operation name="getUtilisateursPorteurCle">
+    		<wsdl:documentation>Récupération de la liste des utilisateurs porteurs de clé</wsdl:documentation>
+    		<wsdl:input message="tns:getUtilisateursPorteurCleRequest"></wsdl:input>
+    		<wsdl:output message="tns:getUtilisateursPorteurCleResponse"></wsdl:output>
+            <wsdl:fault name="formacenSystemException" message="tns:formacenSystemException"></wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding
+    	name="formacenSOAP"
+    	type="tns:formacenEndPoint">
+
+    	<soap:binding
+    		style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+    	<wsdl:operation name="getOrganismes">
+
+    		<soap:operation
+    			soapAction="http://ficen.csn.fr/wsdl/formacen/getOrganismes" />
+    		<wsdl:input>
+
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="formacenSystemException">
+
+    			<soap:fault
+    				use="literal"
+    				name="formacenSystemException" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getNotaires">
+
+    		<soap:operation
+    			soapAction="http://ficen.csn.fr/wsdl/formacen/getNotaires" />
+    		<wsdl:input>
+
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="formacenSystemException">
+
+    			<soap:fault
+    				use="literal"
+    				name="formacenSystemException" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getUtilisateursPorteurCle">
+
+    		<soap:operation
+    			soapAction="http://ficen.csn.fr/wsdl/formacen/getUtilisateursPorteurCle" />
+    		<wsdl:input>
+
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="formacenSystemException">
+
+    			<soap:fault
+    				use="literal"
+    				name="formacenSystemException" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="formacenService">
+    	<wsdl:port name="formacenPort" binding="tns:formacenSOAP">
+    		<soap:address location="http://ficen.csn.fr/formacen" />
+    	</wsdl:port>
+    </wsdl:service></wsdl:definitions>

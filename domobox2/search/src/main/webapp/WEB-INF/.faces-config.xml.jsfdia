@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="error::#pages#applicationError.xhtml"
+    NAME="output" PATH="/pages/applicationError.xhtml"
+    TARGET="rules:#pages#applicationError.xhtml" TITLE="error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="security::#pages#applicationSecurityError.xhtml" NAME="output1"
+    PATH="/pages/applicationSecurityError.xhtml"
+    TARGET="rules:#pages#applicationSecurityError.xhtml"
+    TITLE="security" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="accesrecette::#pages#applicationAccesRecetteSecurityError.xhtml"
+    NAME="output2"
+    PATH="/pages/applicationAccesRecetteSecurityError.xhtml"
+    TARGET="rules:#pages#applicationAccesRecetteSecurityError.xhtml"
+    TITLE="accesrecette" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="changeclereal::#pages#applicationChangeCleRealSecurityError.xhtml"
+    NAME="output3"
+    PATH="/pages/applicationChangeCleRealSecurityError.xhtml"
+    TARGET="rules:#pages#applicationChangeCleRealSecurityError.xhtml"
+    TITLE="changeclereal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="noclereal::#pages#applicationNoCleRealSecurityError.xhtml"
+    NAME="output4" PATH="/pages/applicationNoCleRealSecurityError.xhtml"
+    TARGET="rules:#pages#applicationNoCleRealSecurityError.xhtml"
+    TITLE="noclereal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="unauthorizedclereal::#pages#applicationUnauthorizedCleSecurityError.xhtml"
+    NAME="output5"
+    PATH="/pages/applicationUnauthorizedCleSecurityError.xhtml"
+    TARGET="rules:#pages#applicationUnauthorizedCleSecurityError.xhtml"
+    TITLE="unauthorizedclereal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="viewExpired::#pages#viewExpired.xhtml"
+    NAME="output6" PATH="/pages/viewExpired.xhtml"
+    TARGET="rules:#pages#viewExpired.xhtml" TITLE="viewExpired" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:1" PATH="*" SHAPE="32,849,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:1" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{loginVCtrl.login}:#pages#accueil#accueil.xhtml"
+    NAME="output" PATH="/pages/accueil/accueil.xhtml"
+    TARGET="rules:#pages#accueil#accueil.xhtml"
+    TITLE="#{loginVCtrl.login}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:2" PATH="*" SHAPE="32,961,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:2" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="redirectAccueil::#pages#accueil#accueil.xhtml" NAME="output"
+    PATH="/pages/accueil/accueil.xhtml"
+    TARGET="rules:#pages#accueil#accueil.xhtml" TITLE="redirectAccueil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#applicationError.xhtml"
+  PATH="/pages/applicationError.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#applicationNoCleRealSecurityError.xhtml"
+  PATH="/pages/applicationNoCleRealSecurityError.xhtml"
+  SHAPE="304,641,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#applicationUnauthorizedCleSecurityError.xhtml"
+  PATH="/pages/applicationUnauthorizedCleSecurityError.xhtml"
+  SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#applicationSecurityError.xhtml"
+  PATH="/pages/applicationSecurityError.xhtml" SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#applicationChangeCleRealSecurityError.xhtml"
+  PATH="/pages/applicationChangeCleRealSecurityError.xhtml"
+  SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#applicationAccesRecetteSecurityError.xhtml"
+  PATH="/pages/applicationAccesRecetteSecurityError.xhtml"
+  SHAPE="304,417,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#viewExpired.xhtml"
+  PATH="/pages/viewExpired.xhtml" SHAPE="304,337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:3" PATH="*" SHAPE="32,1217,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:3" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="redirectCguNotAccepted::#pages#accueil#cgu.xhtml" NAME="output"
+    PATH="/pages/accueil/cgu.xhtml"
+    TARGET="rules:#pages#accueil#cgu.xhtml"
+    TITLE="redirectCguNotAccepted" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#accueil#cgu.xhtml"
+  PATH="/pages/accueil/cgu.xhtml" SHAPE="240,1569,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#accueil#accueil.xhtml"
+  PATH="/pages/accueil/accueil.xhtml" SHAPE="256,1009,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:4" PATH="*" SHAPE="256,1905,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:4" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ACC_UTI_01::#pages#accueil#accueilNotaire.xhtml" NAME="output"
+    PATH="/pages/accueil/accueilNotaire.xhtml"
+    TARGET="rules:#pages#accueil#accueilNotaire.xhtml"
+    TITLE="ACC_UTI_01" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ACC_UTI_02::#pages#accueil#accueilInstance.xhtml" NAME="output1"
+    PATH="/pages/accueil/accueilInstance.xhtml"
+    TARGET="rules:#pages#accueil#accueilInstance.xhtml"
+    TITLE="ACC_UTI_02" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ACC_UTI_03::#pages#accueil#accueilCsn.xhtml"
+    NAME="output2" PATH="/pages/accueil/accueilCsn.xhtml"
+    TARGET="rules:#pages#accueil#accueilCsn.xhtml" TITLE="ACC_UTI_03" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="PLAN_UTI_01::#pages#formation#planNotaire.xhtml" NAME="output3"
+    PATH="/pages/formation/planNotaire.xhtml"
+    TARGET="rules:#pages#formation#planNotaire.xhtml"
+    TITLE="PLAN_UTI_01" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="PLAN_UTI_02::#pages#formation#planInstance.xhtml" NAME="output4"
+    PATH="/pages/formation/planInstance.xhtml"
+    TARGET="rules:#pages#formation#planInstance.xhtml"
+    TITLE="PLAN_UTI_02" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="PLAN_UTI_05::#pages#formation#ficheFormationNotaireCreate.xhtml"
+    NAME="output5"
+    PATH="/pages/formation/ficheFormationNotaireCreate.xhtml"
+    TARGET="rules:#pages#formation#ficheFormationNotaireCreate.xhtml"
+    TITLE="PLAN_UTI_05" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_UTI_01::#pages#administration#utilisateursList.xhtml"
+    NAME="output6" PATH="/pages/administration/utilisateursList.xhtml"
+    TARGET="rules:#pages#administration#utilisateursList.xhtml"
+    TITLE="ADM_UTI_01" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_TAB::#pages#administration#referenceList.xhtml"
+    NAME="output7" PATH="/pages/administration/referenceList.xhtml"
+    TARGET="rules:#pages#administration#referenceList.xhtml"
+    TITLE="ADM_TDR_TAB" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_04::#pages#administration#organismeFormationList.xhtml"
+    NAME="output8"
+    PATH="/pages/administration/organismeFormationList.xhtml"
+    TARGET="rules:#pages#administration#organismeFormationList.xhtml"
+    TITLE="ADM_TDR_04" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_05::#pages#administration#intituleFormationList.xhtml"
+    NAME="output9"
+    PATH="/pages/administration/intituleFormationList.xhtml"
+    TARGET="rules:#pages#administration#intituleFormationList.xhtml"
+    TITLE="ADM_TDR_05" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_07::#pages#administration#equivalenceList.xhtml"
+    NAME="output10" PATH="/pages/administration/equivalenceList.xhtml"
+    TARGET="rules:#pages#administration#equivalenceList.xhtml"
+    TITLE="ADM_TDR_07" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_08::#pages#administration#droitsAccesCollaborateursOffice.xhtml"
+    NAME="output11"
+    PATH="/pages/administration/droitsAccesCollaborateursOffice.xhtml"
+    TARGET="rules:#pages#administration#droitsAccesCollaborateursOffice.xhtml"
+    TITLE="ADM_TDR_08" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM_TDR_09::#pages#administration#droitsAccesCollaborateursInstance.xhtml"
+    NAME="output12"
+    PATH="/pages/administration/droitsAccesCollaborateursInstance.xhtml"
+    TARGET="rules:#pages#administration#droitsAccesCollaborateursInstance.xhtml"
+    TITLE="ADM_TDR_09" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_TAB::#pages#statistiques#statHome.xhtml"
+    NAME="output13" PATH="/pages/statistiques/statHome.xhtml"
+    TARGET="rules:#pages#statistiques#statHome.xhtml"
+    TITLE="STAT_UTI_TAB" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_01::#pages#statistiques#statSituationNotaire.xhtml"
+    NAME="output14"
+    PATH="/pages/statistiques/statSituationNotaire.xhtml"
+    TARGET="rules:#pages#statistiques#statSituationNotaire.xhtml"
+    TITLE="STAT_UTI_01" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_02::#pages#statistiques#statRubriqueFormation.xhtml"
+    NAME="output15"
+    PATH="/pages/statistiques/statRubriqueFormation.xhtml"
+    TARGET="rules:#pages#statistiques#statRubriqueFormation.xhtml"
+    TITLE="STAT_UTI_02" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_03::#pages#statistiques#statTypeFormation.xhtml"
+    NAME="output16" PATH="/pages/statistiques/statTypeFormation.xhtml"
+    TARGET="rules:#pages#statistiques#statTypeFormation.xhtml"
+    TITLE="STAT_UTI_03" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_04::#pages#statistiques#statOrganismeFormation.xhtml"
+    NAME="output17"
+    PATH="/pages/statistiques/statOrganismeFormation.xhtml"
+    TARGET="rules:#pages#statistiques#statOrganismeFormation.xhtml"
+    TITLE="STAT_UTI_04" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="STAT_UTI_05::#pages#statistiques#statConsolidation.xhtml"
+    NAME="output18" PATH="/pages/statistiques/statConsolidation.xhtml"
+    TARGET="rules:#pages#statistiques#statConsolidation.xhtml"
+    TITLE="STAT_UTI_05" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#utilisateurDetailEdit.xhtml"
+  PATH="/pages/administration/utilisateurDetailEdit.xhtml"
+  SHAPE="32,4481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#utilisateurDetailEdit.xhtml:0"
+   NAME="item" PATH="/pages/administration/utilisateurDetailEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{utilisateurDetailEditVCtrl.changerProfil}:#pages#administration#utilisateurDetailCons.xhtml"
+    NAME="output"
+    PATH="/pages/administration/utilisateurDetailCons.xhtml"
+    TARGET="rules:#pages#administration#utilisateurDetailCons.xhtml"
+    TITLE="#{utilisateurDetailEditVCtrl.changerProfil}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#validationEquivalenceEdit.xhtml"
+  PATH="/pages/administration/validationEquivalenceEdit.xhtml"
+  SHAPE="32,4593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#validationEquivalenceEdit.xhtml:0"
+   NAME="item"
+   PATH="/pages/administration/validationEquivalenceEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{validationEquivalenceDetailEditVCtrl.saveEquivalence}:#pages#administration#validationEquivalenceCons.xhtml"
+    NAME="output"
+    PATH="/pages/administration/validationEquivalenceCons.xhtml"
+    TARGET="rules:#pages#administration#validationEquivalenceCons.xhtml"
+    TITLE="#{validationEquivalenceDetailEditVCtrl.saveEquivalence}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#intituleFormationCreate.xhtml"
+  PATH="/pages/administration/intituleFormationCreate.xhtml"
+  SHAPE="32,3361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#intituleFormationCreate.xhtml:0"
+   NAME="item"
+   PATH="/pages/administration/intituleFormationCreate.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{intituleFormationCreateVCtrl.saveIntituleFormation}:#pages#administration#intituleFormationCons.xhtml"
+    NAME="output"
+    PATH="/pages/administration/intituleFormationCons.xhtml"
+    TARGET="rules:#pages#administration#intituleFormationCons.xhtml"
+    TITLE="#{intituleFormationCreateVCtrl.saveIntituleFormation}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#intituleFormationEdit.xhtml"
+  PATH="/pages/administration/intituleFormationEdit.xhtml"
+  SHAPE="32,3473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#intituleFormationEdit.xhtml:0"
+   NAME="item" PATH="/pages/administration/intituleFormationEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{intituleFormationEditVCtrl.saveIntituleFormation}:#pages#administration#intituleFormationCons.xhtml"
+    NAME="output"
+    PATH="/pages/administration/intituleFormationCons.xhtml"
+    TARGET="rules:#pages#administration#intituleFormationCons.xhtml"
+    TITLE="#{intituleFormationEditVCtrl.saveIntituleFormation}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#intituleFormationCons.xhtml"
+  PATH="/pages/administration/intituleFormationCons.xhtml"
+  SHAPE="256,3377,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#intituleFormationCons.xhtml:0"
+   NAME="item" PATH="/pages/administration/intituleFormationCons.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{intituleFormationConsVCtrl.deleteIntituleFormation}:#pages#administration#intituleFormationList.xhtml"
+    NAME="output"
+    PATH="/pages/administration/intituleFormationList.xhtml"
+    TARGET="rules:#pages#administration#intituleFormationList.xhtml"
+    TITLE="#{intituleFormationConsVCtrl.deleteIntituleFormation}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#formation#ficheFormationNotaireCreate.xhtml"
+  PATH="/pages/formation/ficheFormationNotaireCreate.xhtml"
+  SHAPE="256,2817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#formation#ficheFormationNotaireCreate.xhtml:0"
+   NAME="item" PATH="/pages/formation/ficheFormationNotaireCreate.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{cc.attrs.partieBasseCtrl.saveFormation()}:#pages#formation#planNotaire.xhtml"
+    NAME="output" PATH="/pages/formation/planNotaire.xhtml"
+    TARGET="rules:#pages#formation#planNotaire.xhtml"
+    TITLE="#{cc.attrs.partieBasseCtrl.saveFormation()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#formation#ficheFormationNotaireEdit.xhtml"
+  PATH="/pages/formation/ficheFormationNotaireEdit.xhtml"
+  SHAPE="256,2929,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#formation#ficheFormationNotaireEdit.xhtml:0"
+   NAME="item" PATH="/pages/formation/ficheFormationNotaireEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{cc.attrs.partieBasseCtrl.saveFormation()}:#pages#formation#planNotaire.xhtml"
+    NAME="output" PATH="/pages/formation/planNotaire.xhtml"
+    TARGET="rules:#pages#formation#planNotaire.xhtml"
+    TITLE="#{cc.attrs.partieBasseCtrl.saveFormation()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#formation#ficheFormationNotaireCons.xhtml"
+  PATH="/pages/formation/ficheFormationNotaireCons.xhtml"
+  SHAPE="256,2705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#formation#ficheFormationNotaireCons.xhtml:0"
+   NAME="item" PATH="/pages/formation/ficheFormationNotaireCons.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{detailFicheFormationConsVCtrl.supprimerFormation()}:#pages#formation#planNotaire.xhtml"
+    NAME="output" PATH="/pages/formation/planNotaire.xhtml"
+    TARGET="rules:#pages#formation#planNotaire.xhtml"
+    TITLE="#{detailFicheFormationConsVCtrl.supprimerFormation()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#formation#interruptionFormationEdit.xhtml"
+  PATH="/pages/formation/interruptionFormationEdit.xhtml"
+  SHAPE="256,3041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#formation#interruptionFormationEdit.xhtml:0"
+   NAME="item" PATH="/pages/formation/interruptionFormationEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{interruptionFormationEditVCtrl.save}:#pages#formation#planNotaire.xhtml"
+    NAME="output" PATH="/pages/formation/planNotaire.xhtml"
+    TARGET="rules:#pages#formation#planNotaire.xhtml"
+    TITLE="#{interruptionFormationEditVCtrl.save}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#accueil#accueilNotaire.xhtml"
+  PATH="/pages/accueil/accueilNotaire.xhtml" SHAPE="528,1889,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#utilisateurDetailCons.xhtml"
+  PATH="/pages/administration/utilisateurDetailCons.xhtml"
+  SHAPE="240,4497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#administration#utilisateurDetailCons.xhtml:0"
+   NAME="item" PATH="/pages/administration/utilisateurDetailCons.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{utilisateurDetailConsVCtrl.connecterAs}:#pages#accueil#accueil.xhtml"
+    NAME="output" PATH="/pages/accueil/accueil.xhtml"
+    TARGET="rules:#pages#accueil#accueil.xhtml"
+    TITLE="#{utilisateurDetailConsVCtrl.connecterAs}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#administration#equivalenceList.xhtml"
+  PATH="/pages/administration/equivalenceList.xhtml"
+  SHAPE="528,3473,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#validationEquivalenceCons.xhtml"
+  PATH="/pages/administration/validationEquivalenceCons.xhtml"
+  SHAPE="240,4609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#droitsAccesCollaborateursOffice.xhtml"
+  PATH="/pages/administration/droitsAccesCollaborateursOffice.xhtml"
+  SHAPE="528,3585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#statistiques#statConsolidation.xhtml"
+  PATH="/pages/statistiques/statConsolidation.xhtml"
+  SHAPE="528,4369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#statistiques#statOrganismeFormation.xhtml"
+  PATH="/pages/statistiques/statOrganismeFormation.xhtml"
+  SHAPE="528,4257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formation#planNotaire.xhtml"
+  PATH="/pages/formation/planNotaire.xhtml" SHAPE="528,2801,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#organismeFormationList.xhtml"
+  PATH="/pages/administration/organismeFormationList.xhtml"
+  SHAPE="528,3249,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#statistiques#statHome.xhtml"
+  PATH="/pages/statistiques/statHome.xhtml" SHAPE="528,3809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formation#planInstance.xhtml"
+  PATH="/pages/formation/planInstance.xhtml" SHAPE="528,2913,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#intituleFormationList.xhtml"
+  PATH="/pages/administration/intituleFormationList.xhtml"
+  SHAPE="528,3361,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administration#utilisateursList.xhtml"
+  PATH="/pages/administration/utilisateursList.xhtml"
+  SHAPE="528,3025,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#accueil#accueilCsn.xhtml"
+  PATH="/pages/accueil/accueilCsn.xhtml" SHAPE="528,2689,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administration#referenceList.xhtml"
+  PATH="/pages/administration/referenceList.xhtml" SHAPE="528,3137,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#statistiques#statRubriqueFormation.xhtml"
+  PATH="/pages/statistiques/statRubriqueFormation.xhtml"
+  SHAPE="528,4033,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administration#droitsAccesCollaborateursInstance.xhtml"
+  PATH="/pages/administration/droitsAccesCollaborateursInstance.xhtml"
+  SHAPE="528,3697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#statistiques#statTypeFormation.xhtml"
+  PATH="/pages/statistiques/statTypeFormation.xhtml"
+  SHAPE="528,4145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#accueil#accueilInstance.xhtml"
+  PATH="/pages/accueil/accueilInstance.xhtml" SHAPE="528,2577,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#statistiques#statSituationNotaire.xhtml"
+  PATH="/pages/statistiques/statSituationNotaire.xhtml"
+  SHAPE="528,3921,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

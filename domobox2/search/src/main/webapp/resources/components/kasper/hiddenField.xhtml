@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag hidden</title>
+</head>
+<body>
+
+<composite:interface>	
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="style" />
+</composite:interface>
+
+<composite:implementation >
+		<h:inputHidden id="#{cc.attrs.property}" 
+					   value="#{cc.parent.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}"
+					   rendered="#{!(cc.parent.attrs.mode eq 'CREATE')}">
+			<f:validator validatorId="domainValidator"/>						
+			<f:attribute name="dtField" 
+				value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.parent.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>		   			
+		</h:inputHidden>		
+</composite:implementation>
+
+</body>
+</html> 

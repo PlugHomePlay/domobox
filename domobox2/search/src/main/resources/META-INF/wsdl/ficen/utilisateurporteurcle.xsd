@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://ficen.csn.fr/wsdl/formacen/utilisateurporteurcle" xmlns:trn="http://ficen.csn.fr/wsdl/transverse/types" xmlns:org="http://ficen.csn.fr/wsdl/organisation/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://ficen.csn.fr/wsdl/formacen/utilisateurporteurcle">
+	<xsd:import schemaLocation="transverse.xsd" namespace="http://ficen.csn.fr/wsdl/transverse/types">
+	</xsd:import>
+
+	<xsd:import schemaLocation="organisation.xsd" namespace="http://ficen.csn.fr/wsdl/organisation/types"></xsd:import>
+	<xsd:complexType name="UtilisateurPorteurCle">
+		<xsd:complexContent>
+			<xsd:extension base="org:utilisateurInfo">
+				<xsd:sequence>
+					<xsd:element
+						name="codeOffice"
+						type="trn:codeCsn"
+						minOccurs="0"
+						maxOccurs="1">
+					</xsd:element>
+					<xsd:element
+						name="codeNotaire"
+						type="trn:codeCsn"
+						minOccurs="0"
+						maxOccurs="1">
+					</xsd:element>
+					<xsd:element
+						name="estSecretaireGeneralInstance"
+						type="xsd:boolean"
+						minOccurs="0"
+						maxOccurs="1">
+					</xsd:element>
+					<xsd:element
+						name="codeCrpcen"
+						type="trn:codeCrpCen" minOccurs="0" maxOccurs="1">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:k="http://java.sun.com/jsf/composite/components/kasper">
+<head>
+<title>Tag textArea</title>
+</head>
+<body>
+
+<composite:interface>	
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="style" />
+    <composite:attribute name="styleClass"/>
+    <composite:attribute name="readonly"/>
+    <composite:attribute name="cols" />
+    <composite:attribute name="rows" />
+</composite:interface>
+
+<composite:implementation >
+		<k:textArea bean="#{cc.parent.attrs.bean}"
+				property="#{cc.attrs.property}" 
+				style="#{cc.parent.attrs.style}" 
+				styleClass="#{cc.attrs.styleClass eq null ? cc.parent.attrs.styleClass : cc.attrs.styleClass}"
+				readonly="#{cc.attrs.readonly eq null ? cc.parent.attrs.mode=='READ' : cc.attrs.readonly}"
+				cols="#{cc.attrs.cols}" 
+				rows="#{cc.attrs.rows}" />
+
+</composite:implementation>
+
+</body>
+</html> 

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context debug="9" reloadable="true">
+	<Resource name="jdbc/DataSource" 
+		auth="SERVLET" 
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://csn-formation-bdd:5432/formationDev"
+		username="formationDev"
+		password="formationDev" 
+		maxActive="5"
+		maxIdle="0" 
+		maxWait="10000"
+		removeAbandoned="true" 
+		logAbandoned="true" />
+</Context>
+

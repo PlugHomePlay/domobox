@@ -1,0 +1,28 @@
+NavigationConst est executé par build-mad via une tache fmpp (http://fmpp.sourceforge.net/).
+Permet de generer une classe java à partir de faces-config.xml:
+
+
+<target name="generate-navigationConst">
+	<fmpp sourceRoot="." outputRoot="src/main/javagen/" logFile="target/log.fmpp"   quiet="true">
+		<xmlRenderings>[{
+		        ifDocumentElementIs: faces-config
+		        template: src/dev/ftl/NavigationConst.ftl
+				xmlns: {D: http://java.sun.com/xml/ns/javaee}
+		    }]
+		</xmlRenderings>
+		<modes>[
+			renderXml(src/main/webapp/WEB-INF/faces-config.xml)
+		    ignore(**)
+		] </modes>
+	</fmpp>
+</target>
+	
+<taskdef name="fmpp" classname="fmpp.tools.AntTask">
+	<classpath>
+		<pathelement location="src/dev/fmpp_0.9.14/lib/fmpp.jar" />
+		<pathelement location="src/dev/fmpp_0.9.14/lib/freemarker.jar" />
+		<pathelement location="src/dev/fmpp_0.9.14/lib/oro.jar" />
+		<pathelement location="src/dev/fmpp_0.9.14/lib/resolver.jar" />
+		<pathelement location="src/dev/fmpp_0.9.14/lib/bsh.jar" />
+	</classpath>
+</taskdef>

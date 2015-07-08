@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag radio</title>
+</head>
+<body>
+
+<composite:interface>	       
+	<composite:attribute name="bean" required="true" />
+    <composite:attribute name="property" required="true" />
+    <composite:attribute name="mode" required="true" />      	
+    <composite:attribute name="items" required="true" />
+    <composite:attribute name="display" required="true" />    
+    <composite:attribute name="dir" default="vertical" shortDescription="dir=horizontal|vertical" required="true"/>
+    <composite:attribute name="process" default="@this"/>
+    <composite:attribute name="listener" method-signature="void listener()" required="true"/>
+    <composite:attribute name="update" required="true" />  	  
+</composite:interface>
+
+<composite:implementation >
+	<h:selectOneRadio rendered="#{!(cc.attrs.mode eq 'READ')}" required="false" styleClass="inputRadio"
+					  layout="#{cc.attrs.dir eq 'vertical'? 'pageDirection' : 'lineDirection'}" 
+					  value="#{cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]}">		
+		<f:selectItems value="#{cc.attrs.items}" var="object" 
+   					itemLabel="#{object[UIAdapterController.toAttributeName[cc.attrs.display]]}"   
+    				itemValue="#{object[UIAdapterController.dtDefinitionUIAdapterMap[object].pkAttributeName]}"/>   				
+        <f:converter converterId="domainConverter"/>
+		<f:validator validatorId="domainValidator"/>						
+		<f:attribute name="dtField" 
+				value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.bean].fieldMap[cc.attrs.property].dtField}"/>
+
+		<p:ajax event="change" process="#{cc.attrs.process}" update="#{cc.attrs.update}" listener="#{cc.attrs.listener}" />						          
+   	</h:selectOneRadio> 	
+   	<ui:fragment rendered="#{!(cc.attrs.mode eq 'READ')}">
+   		<script type="text/javascript">
+	   		$(document).ready(function() {	
+	   			// Coche la valeur "Tous" si aucune radio n'est cochée.
+	   			var radioInputName = '#{radio.clientId}'.split(':').join('\\:');
+	   			var radioInput = $('input[name=' + radioInputName + ']:checked');
+	   			if(radioInput.length == 0){
+	   				var radioInputTousId = '#{radio.clientId}:0'.split(':').join('\\:');
+		   			var radioInputTous = $('#' + radioInputTousId);
+		   			radioInputTous.attr("checked", "checked");
+	   			}
+	   		});
+   		</script>
+   	</ui:fragment>
+   	<h:outputText value="#{UIAdapterController.listUIAdapterMap[cc.attrs.items].indexMap[cc.attrs.bean[UIAdapterController.toAttributeName[cc.attrs.property]]][UIAdapterController.toAttributeName[cc.attrs.display]]}"
+					rendered="#{cc.attrs.mode eq 'READ'}">			
+		<f:converter converterId="domainConverter"/>								
+		<f:attribute name="dtField" 
+				value="#{UIAdapterController.dtDefinitionUIAdapterMap[cc.attrs.items].fieldMap[cc.attrs.display].dtField}"/>				       					 
+    </h:outputText>	    						
+</composite:implementation>
+
+</body>
+</html> 

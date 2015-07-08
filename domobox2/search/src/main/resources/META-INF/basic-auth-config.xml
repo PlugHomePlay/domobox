@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE authorisation-config PUBLIC "-//Kasper//DTD Kasper Authorisation Config 1.0//EN"
+                              "http://www.kleegroup.com/dtd/kasper-authorisation-config_1_0.dtd"> 
+<authorisation-config>
+
+	<!-- Roles -->  	
+  	<role name="R_BATCH" description="Fonctionnalités des batchs"/>
+  	<role name="R_ADM_GES_UTILISATEUR" description="Administration des utilisateurs"/>
+  	<role name="R_ACC_OFFICE" description="Accès à l'accueil destiné aux offices"/>
+  	<role name="R_ACC_INSTANCE" description="Accès à l'accueil destiné aux CD et CR"/>
+  	<role name="R_ACC_CSN" description="Accès à l'accueil destiné au CSN"/>
+  	<role name="R_FOR_CONS_PLAN" description="Consultation du plan de formation du notaire"/>
+  	<role name="R_FOR_GEST_PLAN" description="Gestion des plans : ajout/modificaiton de fiches de formation et validation du plan"/>
+  	<role name="R_FOR_CTR_PLAN" description="Gestion du statut de contrôle des plans"/>
+  	<role name="R_FOR_SYN_PLAN" description="Consultation de l'écran de synthèse des plans de formation"/>
+  	<role name="R_ADM_GES_REFERENCE" description="Consultation et gestion des listes de référence"/>
+  	<role name="R_ADM_DRT_NOTAIRE" description="Gestion des droits d'accès (plan de formation pour le notaire et accès à l'outil pour les instances)"/>
+  	<role name="R_ADM_DRT_OFFICE" description="Gestion des droits d''accès du plan de formation pour le notaire"/>
+  	<role name="R_ADM_DRT_INSTANCE" description="Gestion des droits d''accès à l''outil pour les instances"/>
+  	<role name="R_STA_CONS" description="Accès aux statistiques"/>
+
+</authorisation-config>

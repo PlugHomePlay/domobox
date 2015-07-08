@@ -1,0 +1,6 @@
+Relay	KEYWORD1
+
+upRelay	KEYWORD2
+downRelay	KEYWORD2
+status	KEYWORD2
+toggleRelay	KEYWORD2 

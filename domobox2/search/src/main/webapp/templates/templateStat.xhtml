@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:k="http://java.sun.com/jsf/composite/components/kasper"
+	xmlns:suivi="http://java.sun.com/jsf/composite/components/suiviFormation"
+	template="/templates/templatePageContenu.xhtml">
+	
+	<ui:define name="header">
+		<suivi:headerForm disabled="false" menuActif="Statistiques"/>
+	</ui:define>		
+	
+	<ui:define name="pageTitle">Listes des statistiques</ui:define>
+	
+	<ui:define name="pageContent">
+		<div style="float:left; width: 300px; padding:10px;border-right:1px solid #E2E2E2;">
+			<div id="critere">
+			<h4>Vues statistiques</h4>
+				<div class="box">		
+					<p:dataList value="#{vueStatListCtrl.vuesStatList}" var="item" itemType="disc" id="vueStatLits">  
+					     <h:link outcome="#{item.outcome}">#{item.libelle}</h:link>
+					</p:dataList>
+				</div>
+			</div>
+		</div>
+		<div style="margin-left: 320px; padding:10px 20px;">
+			<ui:insert name="statContent">
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<div style="font-size: 1.6em; text-align: center;">Sélectionnez une vue statistique à partir de la gauche.</div>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+			</ui:insert>
+		</div>
+		<div class="clear"></div>
+</ui:define>
+	
+
+</ui:composition>

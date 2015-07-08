@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<abortOnConfigurationError>${solr.config.abortOnConfigurationError}</abortOnConfigurationError>
+	<dataDir>${solr.config.dataDir}</dataDir>
+
+	<luceneMatchVersion>${solr.config.lucene}</luceneMatchVersion>
+
+	<lib dir="lib/" regex=".*\.jar" />
+
+	<directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
+		<str name="solr.hdfs.home">${solr.hdfs.home:}</str>
+		<str name="solr.hdfs.confdir">${solr.hdfs.confdir:}</str>
+		<str name="solr.hdfs.blockcache.enabled">${solr.hdfs.blockcache.enabled:true}</str>
+		<str name="solr.hdfs.blockcache.global">${solr.hdfs.blockcache.global:true}</str>
+	</directoryFactory>
+
+	<codecFactory class="solr.SchemaCodecFactory"/>
+
+	<schemaFactory class="ClassicIndexSchemaFactory"/>
+
+	<indexConfig>
+		<lockType>${solr.lock.type:native}</lockType>
+		<infoStream>true</infoStream>
+	</indexConfig>
+
+	<jmx/>
+
+	<updateHandler class="solr.DirectUpdateHandler2">
+		<updateLog>
+			<str name="dir">${solr.ulog.dir:}</str>
+		</updateLog>
+
+		<autoCommit>
+			<maxTime>${solr.autoCimmit.maxTime:15000}</maxTime>
+			<openSearcher>false</openSearcher>
+		</autoCommit>
+
+		<autoSoftComit>
+			<maxTime>${solr.autoCimmit.maxTime:-1}</maxTime>
+		</autoSoftComit>
+	</updateHandler>
+
+	<query>
+		<maxBooleanClauses>1024</maxBooleanClauses>
+		<filterCache class="solr.FastLRUCache" size="512" initialSize="512" autowarmCount="0"/>
+		<queryResultCache class="solr.LRUCache" size="512" initialSize="512" autowarmCount="0"/>
+		<documentCache class="solr.LRUCache" size="512" initialSize="512" autowarmCount="0"/>
+
+		<cache name="perSegFilter" class="solr.search.LRUCache" size="10" initialSize="0" autowarmCount="10" regenerator="solr.NoOpRegenerator" />
+		<enableLazyFieldLoading>true</enableLazyFieldLoading>
+		<queryResultWindowSize>20</queryResultWindowSize>
+		<queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+
+		<listener event="newSearcher" class="solr.QuerySenderListener">
+			<arr name="queries">
+			</arr>
+		</listener>
+		<listener event="firstSearcher" class="solr.QuerySenderListener">
+			<arr name="queries">
+				<lst>
+					<str name="q">static firstSearcher warming in solrconfig.xml</str>
+				</lst>
+			</arr>
+		</listener>
+		<useColdSearcher>false</useColdSearcher>
+		<maxWarmingSearchers>2</maxWarmingSearchers>
+	</query>
+
+	<requestDispatcher handleSelect="false">
+		<requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048000" formdataUploadLimitInKBB="2048" addHttpRequestToContext="false"/>
+		<httpCaching never304="true"/>
+	</requestDispatcher>
+
+	<requestHandler name="standard" class="solr.SearchHandler" default="true"/>
+	<requestHandler name="/admin" class="solr.admin.AdminHandlers" />
+	
+	<requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
+		<lst name="defaults">
+			<str name="config">db-data-config.xml</str>
+		</lst>
+	</requestHandler>
+
+	<requestHandler name="/select" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">10</int>
+			<str name="df">test</str>
+		</lst>
+	</requestHandler>
+
+	<requestHandler name="/query" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<str name="wt">json</str>
+			<str name="indent">true</str>
+			<str name="df">text</str>
+		</lst>
+	</requestHandler>
+
+	<requestHandler name="/get" class="solr.RealTimeGetHandler">
+		<lst name="defaults">
+			<str name="omitHeader">true</str>
+			<str name="wt">json</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+
+	<requestHandler name="/browse" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+
+			<str name="wt">velocity</str>
+			<str name="v.template">browse</str>
+			<str name="v.layout">layout</str>
+
+			<str name="defType">edismax</str>
+			<str name="q.alt">*:*</str>
+			<str name="rows">10</str>
+			<str name="fl">*,score</str>
+
+			<str name="facet">on</str>
+			<str name="facet.mincount">1</str>
+		</lst>
+	</requestHandler>
+
+	<initParams path="/update/**,/query,/select,/tvrh,/elevate,/spell,/browse">
+		<lst name="defaults">
+			<str name="df">text</str>
+		</lst>
+	</initParams>
+
+	<requestHandler name="/update" class="solr.UpdateRequestHandler">
+
+	</requestHandler>
+
+	<requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
+
+	<requestHandler name="/analysis/document" startup="lazy" class="solr.DocumentAnalysisRequestHandler" />
+
+	<requestHandler name="/admin/ping" class="solr.PingRequestHandler">
+    	<lst name="invariants">
+      		<str name="q">solrpingquery</str>
+    	</lst>
+    	<lst name="defaults">
+      		<str name="echoParams">all</str>
+    	</lst>
+   	</requestHandler>
+
+	<requestHandler name="/debug/dump" class="solr.DumpRequestHandler" >
+	    <lst name="defaults">
+		    <str name="echoParams">explicit</str> 
+		    <str name="echoHandler">true</str>
+	    </lst>
+	</requestHandler>
+
+	<searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+		<str name="queryAnalyzerFieldType">text_general</str>
+
+		<lst name="spellchecker">
+			<str name="name">default</str>
+			<str name="field">text</str>
+			<str name="classname">solr.DirectSolrSpellChecker</str>
+			<str name="distanceMeasure">internal</str>
+			<float name="accuracy">0.5</float>
+			<int name="maxEdits">2</int>
+			<int name="minPrefix">1</int>
+			<int name="maxInspections">5</int>
+			<int name="minQueryLength">4</int>
+			<float name="maxQueryFrequency">0.01</float>
+		</lst>
+		<lst name="spellchecker">
+			<str name="name">wordbreak</str>
+			<str name="classname">solr.WordBreakSolrSpellChecker</str>
+			<str name="field">name</str>
+			<str name="combineWords">true</str>
+			<str name="breakWords">true</str>
+			<int name="maxChanges">10</int>
+		</lst>
+	</searchComponent>
+
+	<requestHandler name="/spell" class="solr.SearchHandler" startup="lazy">
+    <lst name="defaults">
+      <str name="df">text</str>
+      <!-- Solr will use suggestions from both the 'default' spellchecker
+           and from the 'wordbreak' spellchecker and combine them.
+           collations (re-written queries) can include a combination of
+           corrections from both spellcheckers -->
+      <str name="spellcheck.dictionary">default</str>
+      <str name="spellcheck.dictionary">wordbreak</str>
+      <str name="spellcheck">on</str>
+      <str name="spellcheck.extendedResults">true</str>       
+      <str name="spellcheck.count">10</str>
+      <str name="spellcheck.alternativeTermCount">5</str>
+      <str name="spellcheck.maxResultsForSuggest">5</str>       
+      <str name="spellcheck.collate">true</str>
+      <str name="spellcheck.collateExtendedResults">true</str>  
+      <str name="spellcheck.maxCollationTries">10</str>
+      <str name="spellcheck.maxCollations">5</str>         
+    </lst>
+    <arr name="last-components">
+      <str>spellcheck</str>
+    </arr>
+  </requestHandler>
+
+	<searchComponent name="suggest" class="solr.SuggestComponent">
+		<lst name="suggester">
+			<str name="name">mySuggester</str>
+			<str name="lookupImpl">FuzzyLookupFactory</str>      <!-- org.apache.solr.spelling.suggest.fst -->
+			<str name="dictionaryImpl">DocumentDictionaryFactory</str>     <!-- org.apache.solr.spelling.suggest.HighFrequencyDictionaryFactory --> 
+			<str name="field">cat</str>
+			<str name="weightField">price</str>
+			<str name="suggestAnalyzerFieldType">string</str>
+		</lst>
+	</searchComponent>
+
+	<requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
+		<lst name="defaults">
+			<str name="suggest">true</str>
+			<str name="suggest.count">10</str>
+		</lst>
+		<arr name="components">
+			<str>suggest</str>
+		</arr>
+	</requestHandler>
+	
+	<searchComponent name="tvComponent" class="solr.TermVectorComponent"/>
+
+	<requestHandler name="/tvrh" class="solr.SearchHandler" startup="lazy">
+		<lst name="defaults">
+			<str name="df">text</str>
+			<bool name="tv">true</bool>
+		</lst>
+		<arr name="last-components">
+			<str>tvComponent</str>
+		</arr>
+	</requestHandler>
+
+	<searchComponent name="terms" class="solr.TermsComponent"/>
+
+	<requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
+		<lst name="defaults">
+			<bool name="terms">true</bool>
+			<bool name="distrib">false</bool>
+		</lst>     
+		<arr name="components">
+			<str>terms</str>
+		</arr>
+	</requestHandler>
+
+	<requestHandler name="/admin/ping" class="solr.PingRequestHandler">
+		<!--<str name="healthcheckFile">server-enabled.txt</str>-->
+		<lst name="invariants">
+			<str name="qt">/search</str>
+			<str name="q">solrpingquery</str>
+		</lst>
+		<lst name="defaults">
+			<str name="echoParams">all</str>
+		</lst>
+	</requestHandler>
+
+	<queryResponseWriter name="json" class="solr.JSONResponseWriter">
+		<str name="content-type">text/plain; charset=UTF-8</str>
+	</queryResponseWriter>
+
+	<queryResponseWriter name="velocity" class="solr.VelocityResponseWriter" startup="lazy">
+		<str name="template.base.dir">${velocity.template.base.dir:}</str>
+	</queryResponseWriter>
+
+	<queryResponseWriter name="xslt" class="solr.XSLTResponseWriter">
+		<int name="xsltCacheLifetimeSeconds">5</int>
+	</queryResponseWriter>
+
+	<admin>
+    	<defaultQuery>*:*</defaultQuery>
+  	</admin>
+</config>

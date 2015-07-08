@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+<head>
+<title>Tag search count</title>
+</head>
+<body>
+
+<cc:interface>	
+	<cc:attribute name="controller" required="true" />
+	<cc:attribute name="styleClass" />
+	<cc:attribute name="listId" />
+</cc:interface>
+
+<cc:implementation >
+		<p:panel id="LinkAfficherPageSuivante" styleClass="pagesuivante">
+			<p:commandLink 
+				styleClass="pagesuivante #{cc.attrs.styleClass}"
+				rendered="#{cc.attrs.controller.siLienAfficherPageSuivanteVisible}"				  
+				value="Afficher plus de résultats" 
+				action="#{cc.attrs.controller.afficherPageSuivante}" 
+				ajax="true"
+				update=":#{cc.attrs.listId}, LinkAfficherPageSuivante" />
+		</p:panel>		
+</cc:implementation>
+
+</body>
+</html> 

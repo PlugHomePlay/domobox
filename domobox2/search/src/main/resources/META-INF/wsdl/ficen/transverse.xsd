@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://ficen.csn.fr/wsdl/transverse/types" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ficen.csn.fr/wsdl/transverse/types">
+	<complexType name="MandatoryException">
+		<sequence>
+			<element name="parametre" type="string">
+				<annotation>
+					<documentation>Parametre obligatoire manquant</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SystemException">
+		<sequence>
+			<element name="message" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="adresse">
+		<annotation>
+			<documentation>Structure d'une adresse: 5 lignes, code postal ou cedex, ville, pays</documentation>
+		</annotation>
+		<sequence>
+			<element name="adresseLigne1" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 1 de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne2" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 2 de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne3" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 3 de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne4" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 4 de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="adresseLigne5" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Ligne 5 de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="codePostalCedex" type="string" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Code postal ou cedex de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="ville" type="string" maxOccurs="1" minOccurs="1">
+				<annotation>
+					<documentation>Ville de l'adresse</documentation>
+				</annotation>
+			</element>
+			<element name="pays" type="string" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Pays associé à l'adresse</documentation>
+				</annotation></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="codeCsn">
+        <annotation>
+        	<documentation>Type correspondant à un code CSN</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="6"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="codeCrpCen">
+        <annotation>
+        	<documentation>Type correspondant à un code CRPCEN</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="6"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="libelle150">
+        <annotation>
+        	<documentation>Libellé de 150 caractères</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="150"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="cleReal">
+        <annotation>
+        	<documentation>Type associé à un clé Real</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="nom">
+        <annotation>
+        	<documentation>Type associé au nom d'une personne
+</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="50"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="prenom">
+		<annotation>
+			<documentation>Type associé au prénom d'une personne</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="courriel">
+        <annotation>
+        	<documentation>Type associé à un courriel</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="200"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="telephone">
+		<annotation>
+			<documentation>Type associé à un numéro de téléphone</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="code">
+        <annotation>
+        	<documentation>Code</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="codeDepartement">
+        <annotation>
+        	<documentation>Code d'un département. Il s'agit de son numéro sur 3 caractères, avec si nécessaire des 0 à gauche.</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="3"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="libelle250">
+        <annotation>
+        	<documentation>Libellé de 250 caractères</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="250"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ligneAdresse">
+        <annotation>
+        	<documentation>Ligne d'une adresse</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="38"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ville">
+        <annotation>
+        	<documentation>Nom d'une ville dans les adresses</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="32"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="codePostal">
+        <annotation>
+        	<documentation>Code Postal</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="5"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="libelle50">
+        <annotation>
+        	<documentation>Libellé de 50 caractères</documentation>
+        </annotation>
+        <restriction base="string">
+			<maxLength value="50"></maxLength>
+		</restriction>
+	</simpleType>
+</schema>
